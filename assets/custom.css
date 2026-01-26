@@ -1,0 +1,334 @@
+/*
+  Cream minimalist override for Chirpy theme
+  - Gentle cream background
+  - Warm muted accents for links and headings
+  - Flat, spacious, readable layout
+  This file intentionally only changes visual styles and keeps HTML structure and classes untouched.
+*/
+
+:root {
+  --cream-50: #fffef9; /* lightest */
+  --cream-100: #fff9e5; /* page background */
+  --cream-200: #fdf6e3; /* panels */
+  --cream-300: #f7efd6; /* subtle accents */
+  --muted-ink: #2a2a2a; /* body text */
+  --accent: #b48a78; /* link / heading */
+  --accent-strong: #d2603a; /* hover */
+  --border: #f5ead6; /* borders */
+  --muted-muted: #6b6b6b; /* secondary text */
+  --code-bg: #f5f0e6;
+}
+
+html,
+body {
+  background: var(--cream-100) !important;
+  color: var(--muted-ink) !important;
+  font-family:
+    'Lato',
+    'Source Sans Pro',
+    'Microsoft Yahei',
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    Roboto,
+    'Helvetica Neue',
+    Arial;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Keep header, footer, sidebar panels soft */
+header,
+footer,
+.sidebar,
+#topbar-wrapper,
+#sidebar,
+.site-nav,
+.site-footer {
+  background: var(--cream-200) !important;
+  border-color: var(--border) !important;
+}
+
+/* Cards, article previews and tables */
+.card,
+.post-preview,
+.table-wrapper > table tbody tr:nth-child(2n + 1),
+.table-wrapper > table tbody tr:nth-child(2n) {
+  background: transparent !important; /* let page background show through for minimal look */
+}
+
+/* Links and navigation */
+a,
+.nav-link,
+.sidebar-bottom a {
+  color: var(--accent) !important;
+  text-decoration: none !important;
+  border-bottom: 0 !important;
+}
+
+a:hover,
+.nav-link:hover,
+.sidebar-bottom a:hover {
+  color: var(--accent-strong) !important;
+  border-bottom: 0px solid var(--accent-strong) !important;
+}
+
+/* Headings: lighter weight, warm accent */
+h1,
+h2,
+h3,
+h4,
+h5 {
+  color: var(--accent) !important;
+  font-weight: 400 !important;
+  margin-top: 1.25em;
+  margin-bottom: 0.5em;
+}
+
+/* Body text and small print */
+.post,
+.post-body,
+p,
+li,
+.post-meta,
+.post-footer {
+  color: var(--muted-ink) !important;
+  line-height: 1.7;
+}
+
+/* Buttons and inputs: subtle, flat */
+button,
+.btn,
+input,
+textarea,
+select {
+  background: var(--cream-50) !important;
+  color: var(--muted-ink) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 6px !important;
+  box-shadow: none !important;
+}
+
+/* Blockquote and table headers */
+blockquote,
+.table-wrapper > table thead th {
+  background: var(--cream-300) !important;
+  border-left: 4px solid var(--border) !important;
+  padding: 0.75em 1em !important;
+}
+
+/* Code blocks */
+pre,
+code,
+.highlight {
+  background: var(--code-bg) !important;
+  color: var(--muted-ink) !important;
+  border-radius: 6px !important;
+  padding: 0.5em !important;
+  overflow: auto;
+}
+
+/* Remove heavy decorations for a flat look */
+.card,
+.post-preview,
+.btn-box-shadow,
+.site-banner,
+.toc-wrap {
+  box-shadow: none !important;
+  background-image: none !important;
+}
+
+/* Images: gentle borders and spacing */
+img,
+.post img {
+  /* keep small images and inline images gently inset */
+  background: var(--cream-50) !important;
+  border-radius: 4px;
+  max-width: 100%;
+  height: auto;
+  display: inline-block;
+}
+
+/* Make images inside the article card sit flush with the card border
+   - remove the image's separate border so there's no visual gap
+   - force block layout with no margins/padding so the image touches the edge
+   - ensure the image fills its container height and uses object-fit to crop
+   - apply matching top-right and bottom-right radii so corners align */
+#post-list article.card-wrapper img {
+  border: 0px solid rgba(43, 36, 31, 0.18) !important;
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+}
+
+/* Target common thumbnail/cover selectors used in Chirpy-based cards */
+#post-list article.card-wrapper .post-cover img,
+#post-list article.card-wrapper .post-thumbnail img,
+#post-list article.card-wrapper .thumb img,
+#post-list article.card-wrapper .post-preview img {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  object-fit: cover !important;
+  display: block !important;
+  border-top-right-radius: 10px !important;
+  border-bottom-right-radius: 10px !important;
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+}
+
+/* Ensure the preview container itself doesn't add padding between border and image */
+#post-list article.card-wrapper .post-preview,
+#post-list article.card-wrapper .post-thumb,
+#post-list article.card-wrapper .post-cover,
+#post-list article.card-wrapper .post-thumbnail {
+  padding: 0 !important;
+  margin: 0 !important;
+  /* make the image column more prominent so it covers the right side of the card */
+  flex: 0 0 100% !important;
+  min-width: 240px !important;
+  max-width: 100% !important;
+  overflow: hidden !important;
+}
+
+/* Ensure the textual/card content expands to fill available space */
+#post-list article.card-wrapper .card-body,
+#post-list article.card-wrapper .post-body,
+#post-list article.card-wrapper .post-card-content,
+#post-list article.card-wrapper .post-meta {
+  flex: 1 1 62% !important;
+  padding: 1rem 1.25rem !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important; /* vertically center content within the card */
+  align-items: flex-start !important; /* keep text left-aligned */
+}
+
+/* Footer small print */
+.site-footer,
+.copyright {
+  color: var(--muted-muted) !important;
+  font-size: 0.95rem;
+}
+
+/* Sidebar: keep compact and airy */
+.sidebar {
+  padding: 1rem !important;
+}
+
+/* Accessibility: focus states */
+a:focus,
+button:focus,
+input:focus,
+textarea:focus {
+  outline: 2px dashed var(--accent-strong) !important;
+  outline-offset: 2px !important;
+}
+
+/* Reduce visual noise for tags, badges */
+.tag,
+.label,
+.badge {
+  background: transparent !important;
+  color: var(--muted-muted) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 999px !important;
+  padding: 0.15em 0.5em !important;
+}
+
+/* Small adjustments for responsiveness */
+@media (max-width: 768px) {
+  header,
+  footer,
+  .sidebar {
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+  }
+}
+
+/* Keep third-party widget colors neutral when possible */
+.glightbox-clean,
+.mermaid,
+.simple-jekyll-search,
+.tocbot {
+  background: transparent !important;
+}
+
+/* Card styling: stable rounded border and no layout-shifting on hover */
+#post-list article.card-wrapper {
+  box-sizing: border-box !important;
+  border: 1px solid rgba(43, 36, 31, 0.18) !important; /* softer warm border so the card integrates with the cream palette */
+  border-radius: 10px !important;
+  overflow: hidden !important; /* clip inner content without shifting layout */
+  background-clip: padding-box !important;
+  padding: 0 !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: stretch !important; /* make image column match content height */
+}
+
+/* Neutralize any theme hover transforms or shadows that cause spacing mismatch */
+#post-list .post-preview:hover,
+#post-list article.card-wrapper:hover {
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* Remove any inner gray panels the theme may add (keeps preview content on cream) */
+.card-body,
+.post-preview,
+.card-wrapper .card-body,
+.card {
+  background: transparent !important;
+}
+
+/* Subtle card hover tint (no layout shift) */
+#post-list article.card-wrapper:hover {
+  background-color: rgba(43, 36, 31, 0.03) !important;
+}
+
+/* Style the search input to remove the dark rounded background shown previously */
+#search-input,
+#search input,
+search input {
+  background: var(--cream-50) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--muted-ink) !important;
+  border-radius: 999px !important;
+  padding: 0.25rem 0.75rem !important;
+}
+
+/* Prevent focus outlines from adding extra space */
+#post-list .post-preview:focus,
+#post-list article.card-wrapper:focus {
+  outline: none !important;
+}
+
+/* Card titles: allow full title to display (remove truncation/clamping) */
+#post-list article.card-wrapper .post-title,
+#post-list article.card-wrapper .card-title,
+#post-list article.card-wrapper .post-card-title,
+#post-list article.card-wrapper .post-card-content .title,
+#post-list article.card-wrapper h2.title,
+#post-list article.card-wrapper h3.title,
+#post-list article.card-wrapper .post-preview .title,
+#post-list article.card-wrapper .post-card-content h2,
+#post-list article.card-wrapper .post-card-content h3 {
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+  display: block !important;
+  -webkit-line-clamp: unset !important;
+  max-height: none !important;
+  line-height: 1.25 !important;
+  margin: 0 0 0.5rem 0 !important;
+}
+
+/* Ensure the linked title content also wraps */
+#post-list article.card-wrapper .post-title a,
+#post-list article.card-wrapper .card-title a,
+#post-list article.card-wrapper .post-card-title a {
+  white-space: normal !important;
+  display: inline !important;
+}
