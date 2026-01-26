@@ -77,6 +77,7 @@ evil-winrm -i 10.129.95.210 -u Administrator -H '32693b11e6aa90eb43d32c72a07ceea
 ![Administrator NTHash](/assets/img/posts/Account-Operators-and-Exchange-Windows-Permissions/Admin_NTHash.png)
 
 ## References:
-https://www.hackthebox.com/machines/forest
-https://specterops.io/blog/2024/03/20/pwned-by-the-mail-carrier/
-https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/understand-security-groups#account-operators
+
+* https://www.hackthebox.com/machines/forest
+* https://specterops.io/blog/2024/03/20/pwned-by-the-mail-carrier/
+* https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/understand-security-groups#account-operators
