@@ -8,7 +8,7 @@ tags: [Active Directory, DACLs, bloodyAD, impacket-secretsdump]
 math: true
 mermaid: true
 image:
-  path: /assets/headers/banner.jpg
+  path: /assets/headers/banner2.jpg
   alt: Silhouette of Woman Holding Lantern in Night
 ---
 
