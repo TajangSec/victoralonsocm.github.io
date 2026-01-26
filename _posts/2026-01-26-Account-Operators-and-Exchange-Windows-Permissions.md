@@ -16,8 +16,6 @@ image:
 
 This post shows how to abuse the excessive permissions of the **Exchange Windows Permissions** / **Exchange Truster Subsystem** groups to grant **DCSync** permissions to an account created with a compromised user in the **Account Operators** group.
 
-{: .mt-4 .mb-0 }
-
 Base on the [HTB Forest Machine](https://www.hackthebox.com/machines/forest).
 
 ## Attack Path:
