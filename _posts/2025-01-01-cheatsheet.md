@@ -197,3 +197,7 @@ The image below will toggle dark/light mode based on theme preference, notice it
 
 [^footnote]: The footnote source
 [^fn-nth-2]: The 2nd footnote source
+
+## Example:
+
+https://c0by.de/blog/posts/chirpy_cheatsheet/#code-block
