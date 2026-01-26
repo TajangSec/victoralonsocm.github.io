@@ -8,7 +8,7 @@ tags: [Active Directory, DACLs, bloodyAD, impacket-secretsdump]
 math: true
 mermaid: true
 image:
-  path: /assets/headers/banner2.jpg
+  path: /assets/headers/2026-01-26-Account-Operators-and-Exchange-Windows-Permissions.jpg
   alt: Silhouette of Woman Holding Lantern in Night
 ---
 
