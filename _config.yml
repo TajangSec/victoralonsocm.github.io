@@ -30,6 +30,9 @@ url: "https://victoralonsocm.github.io"
 github:
   username: victoralonsocm # change to your GitHub username
 
+post:
+  license: false
+
 twitter:
   username: _Evil_Machine # change to your Twitter username
 
@@ -227,6 +230,3 @@ jekyll-archives:
   permalinks:
     tag: /tags/:name/
     category: /categories/:name/
-
-post:
-  license: false
