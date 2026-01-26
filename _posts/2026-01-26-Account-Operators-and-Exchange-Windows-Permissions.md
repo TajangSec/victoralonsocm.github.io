@@ -2,17 +2,17 @@
 title: From Account Operators and Exchange Windows Permissions / Exchange Truster Subsystem groups to Domain Admin
 description: Abusing the excessive permissions of the Exchange Windows Permissions / Exchange Truster Subsystem groups to grant DCSync.
 author: victor_contreras
-date: 2026-01-26
+date: 2026-01-26 11:33:00 +0800
 categories: [Active Directory, DACLs]
 tags: [Active Directory, DACLs, bloodyAD, impacket-secretsdump]
 math: true
 mermaid: true
 image:
-  path: /assets/img/posts/Account-Operators-and-Exchange-Windows-Permissions/2026-01-26-Account-Operators-and-Exchange-Windows-Permissions.jpg
+  path: /assets/img/posts/Account-Operators-and-Exchange-Windows-Permissions/banner.jpg
   alt: Silhouette of Woman Holding Lantern in Night
 ---
 
-## Summary:
+# Summary:
 
 {: .mt-4 .mb-0 }
 
