@@ -10,9 +10,13 @@ math: true
 mermaid: true
 image:
   path: /assets/headers/banner.jpg
-  alt: Status update.
+  alt: Status update...
 ---
 
 # H1 — Hello My Old Friend
 
 {: .mt-4 .mb-0 }
+
+## Note
+
+We are still here...

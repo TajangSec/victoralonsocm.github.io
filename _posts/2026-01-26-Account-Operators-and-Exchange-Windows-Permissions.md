@@ -5,12 +5,16 @@ author: victor_contreras
 date: 2026-01-26
 categories: [Active Directory, DACLs]
 tags: [Active Directory, DACLs, bloodyAD, impacket-secretsdump]
+math: true
+mermaid: true
 image:
   path: /assets/img/posts/Account-Operators-and-Exchange-Windows-Permissions/2026-01-26-Account-Operators-and-Exchange-Windows-Permissions.jpg
   alt: Silhouette of Woman Holding Lantern in Night
 ---
 
 ## Summary:
+
+{: .mt-4 .mb-0 }
 
 This post shows how to abuse the excessive permissions of the **Exchange Windows Permissions** / **Exchange Truster Subsystem** groups to grant **DCSync** permissions to an account created with a compromised user in the **Account Operators** group.
 
