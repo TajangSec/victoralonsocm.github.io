@@ -22,7 +22,7 @@ Base on the [HTB Forest Machine](https://www.hackthebox.com/machines/forest).
 
 ## Attack Path:
 
-Example attack path from our compromised account to the domain controller from `BloodHound`:
+Example attack path from our compromised account to the domain controller from `BloodHound`.
 
 ![BloodHound Attack Path](/assets/img/posts/Account-Operators-and-Exchange-Windows-Permissions/Attack_Path.png)
 
