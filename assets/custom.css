@@ -1,320 +1,1168 @@
 /*
-  Cream minimalist override for Chirpy theme
-  - Gentle cream background
-  - Warm muted accents for links and headings
-  - Flat, spacious, readable layout
-  This file intentionally only changes visual styles and keeps HTML structure and classes untouched.
+  EvilMachine - Modern Retro CRT Theme
+  Phosphor green terminal aesthetic on dark backgrounds
+  Overrides jekyll-theme-chirpy variables and adds retro effects
 */
 
+/* ===== Fonts ===== */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&family=IBM+Plex+Mono:wght@300;400;500;700&family=Share+Tech+Mono&display=swap');
+
+/* ===== Color Palette - Chirpy Variable Overrides ===== */
+html[data-mode=dark],
 :root {
-  --cream-50: #fffef9; /* lightest */
-  --cream-100: #fff9e5; /* page background */
-  --cream-200: #fdf6e3; /* panels */
-  --cream-300: #f7efd6; /* subtle accents */
-  --muted-ink: #2a2a2a; /* body text */
-  --accent: #b48a78; /* link / heading */
-  --accent-strong: #d2603a; /* hover */
-  --border: #f5ead6; /* borders */
-  --muted-muted: #6b6b6b; /* secondary text */
-  --code-bg: #f5f0e6;
+  /* Core retro palette */
+  --retro-bg-deep:       #0a0a0f;
+  --retro-bg:            #0d0d14;
+  --retro-bg-surface:    #12121c;
+  --retro-bg-elevated:   #1a1a28;
+  --retro-border:        #1e1e2e;
+  --retro-border-glow:   #00ff4120;
+
+  --retro-text:          #b8c0c8;
+  --retro-text-dim:      #5a6270;
+  --retro-text-bright:   #e0e4e8;
+
+  --retro-green:         #00ff41;
+  --retro-green-dim:     #00cc33;
+  --retro-green-glow:    #00ff4140;
+  --retro-amber:         #ffb627;
+  --retro-amber-dim:     #cc9020;
+  --retro-cyan:          #00d4ff;
+  --retro-cyan-dim:      #00bfee;
+  --retro-magenta:       #ff2d7b;
+  --retro-purple:        #a855f7;
+
+  /* Chirpy variable overrides */
+  --main-bg:             var(--retro-bg);
+  --mask-bg:             var(--retro-bg-deep);
+  --main-border-color:   var(--retro-border);
+  --text-color:          var(--retro-text);
+  --text-muted-color:    var(--retro-text-dim);
+  --heading-color:       var(--retro-green);
+  --label-color:         var(--retro-text-dim);
+  --link-color:          var(--retro-cyan);
+  --link-underline-color: var(--retro-cyan-dim);
+
+  --blockquote-border-color: var(--retro-green-dim);
+  --blockquote-text-color:   var(--retro-text-dim);
+
+  --button-bg:           var(--retro-bg-surface);
+  --btn-border-color:    var(--retro-border);
+  --btn-backtotop-color: var(--retro-green);
+  --btn-backtotop-border-color: var(--retro-border);
+
+  --sidebar-bg:          var(--retro-bg-deep);
+  --sidebar-border-color: var(--retro-border);
+  --sidebar-muted-color: var(--retro-text-dim);
+  --sidebar-active-color: var(--retro-green);
+  --sidebar-hover-bg:    var(--retro-bg-elevated);
+  --sidebar-btn-bg:      var(--retro-bg-surface);
+  --sidebar-btn-color:   var(--retro-text-dim);
+  --site-title-color:    var(--retro-green);
+  --site-subtitle-color: var(--retro-text-dim);
+  --avatar-border-color: var(--retro-green-dim);
+
+  --topbar-bg:           rgba(10, 10, 15, 0.85);
+  --topbar-text-color:   var(--retro-text);
+  --search-border-color: var(--retro-border);
+  --search-icon-color:   var(--retro-text-dim);
+  --input-focus-border-color: var(--retro-green-dim);
+
+  --card-bg:             var(--retro-bg-surface);
+  --card-hovor-bg:       var(--retro-bg-elevated);
+  --card-shadow:         0 0 15px rgba(0, 255, 65, 0.03), 0 0 0 1px var(--retro-border);
+
+  --post-list-text-color: var(--retro-text);
+  --toc-highlight:       var(--retro-green);
+  --toc-popup-border-color: var(--retro-border);
+
+  --tag-border:          var(--retro-border);
+  --tag-shadow:          var(--retro-bg-deep);
+  --tag-hover:           var(--retro-bg-elevated);
+  --search-tag-bg:       var(--retro-bg-surface);
+
+  --categories-border:   var(--retro-border);
+  --categories-hover-bg: var(--retro-bg-elevated);
+  --categories-icon-hover-color: var(--retro-green);
+
+  --timeline-color:      var(--retro-border);
+  --timeline-node-bg:    var(--retro-green-dim);
+  --timeline-year-dot-color: var(--retro-bg-deep);
+
+  --highlight-bg-color:  #0a0a12;
+  --highlighter-rouge-color: var(--retro-cyan);
+  --highlight-lineno-color:  var(--retro-text-dim);
+  --inline-code-bg:      rgba(0, 255, 65, 0.06);
+  --code-color:          var(--retro-text);
+  --code-header-text-color: var(--retro-text-dim);
+  --code-header-muted-color: var(--retro-border);
+  --code-header-icon-color: var(--retro-text-dim);
+  --clipboard-checked-color: var(--retro-green);
+
+  --kbd-wrap-color:      var(--retro-border);
+  --kbd-text-color:      var(--retro-green);
+  --kbd-bg-color:        var(--retro-bg-surface);
+
+  --prompt-tip-bg:       rgba(0, 255, 65, 0.2);
+  --prompt-tip-icon-color: var(--retro-green);
+  --prompt-info-bg:      rgba(0, 212, 255, 0.2);
+  --prompt-info-icon-color: var(--retro-cyan);
+  --prompt-warning-bg:   rgba(255, 182, 39, 0.25);
+  --prompt-warning-icon-color: var(--retro-amber);
+  --prompt-danger-bg:    rgba(255, 45, 123, 0.25);
+  --prompt-danger-icon-color: var(--retro-magenta);
+
+  --footnote-target-bg:  rgba(0, 255, 65, 0.1);
+  --tb-odd-bg:           var(--retro-bg-surface);
+  --tb-border-color:     var(--retro-border);
+  --dash-color:          var(--retro-border);
+
+  --btn-share-color:     var(--retro-text-dim);
+  --btn-share-hover-color: var(--retro-green);
+  --btn-paginator-text-color: var(--retro-text);
+  --btn-paginator-hover-color: var(--retro-bg-elevated);
+
+  --language-border-color: var(--retro-border);
+  --filepath-text-color:   var(--retro-amber);
 }
 
-html,
-body {
-  background: var(--cream-100) !important;
-  color: var(--muted-ink) !important;
-  font-family:
-    'Lato',
-    'Source Sans Pro',
-    'Microsoft Yahei',
-    system-ui,
-    -apple-system,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial;
+/* ===== Typography ===== */
+html, body {
+  font-family: 'JetBrains Mono', 'IBM Plex Mono', 'Consolas', monospace !important;
+  font-size: 15px !important;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: 0.01em;
+  line-height: 1.7;
+  background: var(--retro-bg) !important;
+  color: var(--retro-text) !important;
 }
 
-/* Keep header, footer, sidebar panels soft */
-header,
-footer,
-.sidebar,
-#topbar-wrapper,
-#sidebar,
-.site-nav,
-.site-footer {
-  background: var(--cream-200) !important;
-  border-color: var(--border) !important;
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Share Tech Mono', 'JetBrains Mono', monospace !important;
+  color: var(--retro-green) !important;
+  font-weight: 500 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
-/* Cards, article previews and tables */
+.site-title {
+  font-family: 'Share Tech Mono', monospace !important;
+  color: var(--retro-green) !important;
+  text-shadow: 0 0 10px var(--retro-green-glow), 0 0 20px rgba(0, 255, 65, 0.15) !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+}
+
+.site-subtitle {
+  font-family: 'JetBrains Mono', monospace !important;
+  color: var(--retro-text-dim) !important;
+  font-size: 0.8rem !important;
+}
+
+.nav-link span {
+  font-family: 'Share Tech Mono', monospace !important;
+  letter-spacing: 0.08em;
+}
+
+/* ===== Blinking Cursor on Site Title ===== */
+@keyframes blink-cursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.site-title::after {
+  content: '_';
+  animation: blink-cursor 1s step-end infinite;
+  color: var(--retro-green);
+}
+
+/* ===== CRT Scanlines ===== */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.03) 0px,
+    rgba(0, 0, 0, 0.03) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  mix-blend-mode: multiply;
+}
+
+/* ===== CRT Vignette ===== */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9998;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 60%,
+    rgba(0, 0, 0, 0.25) 100%
+  );
+}
+
+/* ===== Sidebar ===== */
+#sidebar {
+  background: var(--retro-bg-deep) !important;
+  border-right: 1px solid var(--retro-border) !important;
+  box-shadow: 1px 0 15px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Square avatar */
+#sidebar #avatar {
+  border-radius: 4px !important;
+  margin-top: -8px !important;
+  width: 8rem !important;
+  height: 8rem !important;
+  overflow: visible !important;
+  box-shadow: none !important;
+}
+
+#sidebar #avatar img {
+  width: 100% !important;
+  height: 100% !important;
+  border: 1px solid rgba(0, 255, 65, 0.6) !important;
+  box-shadow:
+    0 0 8px rgba(0, 255, 65, 0.55),
+    0 0 18px rgba(0, 255, 65, 0.3),
+    0 0 35px rgba(0, 255, 65, 0.12) !important;
+  background: transparent !important;
+  border-radius: 4px !important;
+  animation: neon-flicker 4s ease-in-out infinite alternate !important;
+}
+
+#sidebar #avatar img:hover {
+  transform: scale(1.03) !important;
+}
+
+@keyframes neon-flicker {
+  0% {
+    box-shadow:
+      0 0 8px rgba(0, 255, 65, 0.55),
+      0 0 18px rgba(0, 255, 65, 0.3),
+      0 0 35px rgba(0, 255, 65, 0.12);
+    border-color: rgba(0, 255, 65, 0.6);
+  }
+  50% {
+    box-shadow:
+      0 0 5px rgba(0, 255, 65, 0.4),
+      0 0 12px rgba(0, 255, 65, 0.2),
+      0 0 25px rgba(0, 255, 65, 0.08);
+    border-color: rgba(0, 255, 65, 0.45);
+  }
+  100% {
+    box-shadow:
+      0 0 10px rgba(0, 255, 65, 0.6),
+      0 0 22px rgba(0, 255, 65, 0.35),
+      0 0 45px rgba(0, 255, 65, 0.15);
+    border-color: rgba(0, 255, 65, 0.7);
+  }
+}
+
+/* Divider between profile and nav */
+#sidebar .profile-wrapper {
+  padding-bottom: 1rem !important;
+  margin-bottom: 0 !important;
+}
+
+/* Terminal frame around nav */
+#sidebar nav {
+  border: 1px solid var(--retro-border) !important;
+  border-radius: 4px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  position: relative;
+  overflow: hidden;
+  width: 100% !important;
+  flex-grow: 1 !important;
+}
+
+#sidebar nav::before {
+  content: 'evilmachine:~$';
+  display: block;
+  background: var(--retro-bg-elevated);
+  color: var(--retro-text-dim);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.8rem;
+  padding: 4px 10px;
+  border-bottom: 1px solid var(--retro-border);
+  letter-spacing: 0.05em;
+}
+
+/* Nav list inside terminal */
+#sidebar ul {
+  padding: 0.4rem 0 !important;
+  margin-bottom: 0.5rem !important;
+}
+
+/* Hide FA icons, use terminal prompt */
+#sidebar ul li.nav-item a.nav-link i {
+  display: none !important;
+}
+
+#sidebar ul li.nav-item {
+  padding-left: 2.25rem !important;
+  padding-right: 0.5rem !important;
+}
+
+#sidebar ul li.nav-item a.nav-link span {
+  font-family: 'Share Tech Mono', monospace !important;
+  font-size: 1.05rem !important;
+}
+
+#sidebar ul li.nav-item a.nav-link span::before {
+  content: '$ ' !important;
+  margin-right: 0.25rem !important;
+  color: var(--retro-text-dim);
+  font-family: 'Share Tech Mono', monospace;
+}
+
+/* Active nav item — terminal cursor effect */
+#sidebar ul li.nav-item.active .nav-link {
+  color: var(--retro-green) !important;
+  background-color: transparent !important;
+  background: transparent !important;
+}
+
+#sidebar ul li.nav-item.active .nav-link span::before {
+  content: '> ' !important;
+  color: var(--retro-green) !important;
+  animation: blink-cursor 1s step-end infinite;
+}
+
+/* Nav items — tighter spacing */
+#sidebar ul li.nav-item a.nav-link {
+  padding-top: 0.25rem !important;
+  padding-bottom: 0.25rem !important;
+  border-radius: 2px !important;
+}
+
+#sidebar ul li.nav-item:not(:first-child) {
+  margin-top: 0 !important;
+}
+
+/* Nav hover — subtle, no background */
+#sidebar ul li.nav-item a.nav-link:hover {
+  color: var(--retro-green) !important;
+  background-color: transparent !important;
+  background: transparent !important;
+}
+
+.sidebar-bottom {
+  margin-top: 1rem !important;
+}
+
+.sidebar-bottom a {
+  color: var(--retro-text-dim) !important;
+  transition: color 0.2s, text-shadow 0.2s !important;
+}
+.sidebar-bottom a:hover {
+  color: var(--retro-green) !important;
+  text-shadow: 0 0 8px var(--retro-green-glow) !important;
+}
+
+#mode-toggle {
+  color: var(--retro-amber) !important;
+}
+
+/* ===== Main Content — wider ===== */
+@media (min-width: 1200px) {
+  .row.flex-grow-1 {
+    flex-wrap: nowrap !important;
+  }
+
+  main.col-12 {
+    max-width: 100% !important;
+    flex: 1 1 0% !important;
+    min-width: 0 !important;
+  }
+
+  #panel-wrapper {
+    flex: 0 0 28% !important;
+    max-width: 28% !important;
+  }
+}
+
+.container {
+  max-width: 1500px !important;
+}
+
+/* ===== Post Content Width ===== */
+article.px-1 {
+  max-width: 100% !important;
+  margin-top: 1.5rem !important;
+}
+
+/* ===== Post Cards ===== */
+#post-list article.card-wrapper {
+  background: var(--retro-bg-surface) !important;
+  border: 1px solid var(--retro-border) !important;
+  border-radius: 4px !important;
+  overflow: hidden !important;
+  transition: border-color 0.3s, box-shadow 0.3s !important;
+  position: relative;
+}
+
+#post-list article.card-wrapper::before {
+  content: '> _ EvilMachine://posts';
+  display: block;
+  background: var(--retro-bg-elevated);
+  color: var(--retro-text-dim);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.7rem;
+  padding: 4px 12px;
+  border-bottom: 1px solid var(--retro-border);
+  letter-spacing: 0.05em;
+}
+
+/* Stretch link to cover entire card including terminal header */
+#post-list article.card-wrapper a.post-preview {
+  position: static !important;
+}
+
+#post-list article.card-wrapper a.post-preview::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  -webkit-tap-highlight-color: transparent;
+}
+
+#post-list article.card-wrapper:hover {
+  border-color: var(--retro-green-dim) !important;
+  border-width: 1px !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+/* Remove all inner border-radius from card elements */
+#post-list .card .preview-img,
+#post-list .card .preview-img img,
+#post-list .card .post-preview,
+#post-list .card .post-preview::before {
+  border-radius: 0 !important;
+}
+
+.card-body h1, .card-body h2, .card-body .card-title {
+  color: var(--retro-green) !important;
+  font-size: 1.3rem !important;
+}
+
+.post-meta {
+  color: var(--retro-text-dim) !important;
+  font-size: 0.8rem !important;
+}
+
+.card-body {
+  background: transparent !important;
+}
+
+#post-list article.card-wrapper img {
+  background: transparent !important;
+  border-radius: 0 !important;
+}
+
+/* Remove inner panel backgrounds */
 .card,
 .post-preview,
-.table-wrapper > table tbody tr:nth-child(2n + 1),
-.table-wrapper > table tbody tr:nth-child(2n) {
-  background: transparent !important; /* let page background show through for minimal look */
+.card-wrapper .card-body {
+  background: transparent !important;
 }
 
-/* Links and navigation */
-a,
-.nav-link,
-.sidebar-bottom a {
-  color: var(--accent) !important;
+/* ===== Links ===== */
+a {
+  color: var(--retro-cyan) !important;
   text-decoration: none !important;
-  border-bottom: 0 !important;
+  transition: color 0.2s, text-shadow 0.2s !important;
+}
+a:hover {
+  color: var(--retro-green) !important;
+  text-shadow: 0 0 6px var(--retro-green-glow) !important;
 }
 
-a:hover,
-.nav-link:hover,
-.sidebar-bottom a:hover {
-  color: var(--accent-strong) !important;
-  border-bottom: 0px solid var(--accent-strong) !important;
+/* Don't apply link hover glow to full-card links */
+a.post-preview:hover {
+  color: inherit !important;
+  text-shadow: none !important;
 }
 
-/* Headings: lighter weight, warm accent */
-h1,
-h2,
-h3,
-h4,
-h5 {
-  color: var(--accent) !important;
-  font-weight: 400 !important;
-  margin-top: 1.25em;
-  margin-bottom: 0.5em;
-}
-
-/* Body text and small print */
+/* ===== Headings within content ===== */
 .post,
 .post-body,
 p,
 li,
-.post-meta,
 .post-footer {
-  color: var(--muted-ink) !important;
+  color: var(--retro-text) !important;
   line-height: 1.7;
 }
 
-/* Buttons and inputs: subtle, flat */
-button,
-.btn,
-input,
-textarea,
-select {
-  background: var(--cream-50) !important;
-  color: var(--muted-ink) !important;
-  border: 1px solid var(--border) !important;
-  border-radius: 6px !important;
+/* ===== Code Blocks ===== */
+
+/* Outer wrapper: div[class^=language-] */
+div[class^='language-'] {
+  background: var(--highlight-bg-color) !important;
+  border-radius: 4px !important;
+  box-shadow: var(--retro-border) 0 0 0 1px !important;
+  margin-bottom: 1.2em;
+}
+
+/* Inner highlight container — no extra border when inside wrapper */
+div[class^='language-'] .highlight {
+  background: var(--highlight-bg-color) !important;
+  border: none !important;
+  border-radius: 0 0 4px 4px !important;
   box-shadow: none !important;
 }
 
-/* Blockquote and table headers */
-blockquote,
-.table-wrapper > table thead th {
-  background: var(--cream-300) !important;
-  border-left: 4px solid var(--border) !important;
-  padding: 0.75em 1em !important;
-}
-
-/* Code blocks */
-pre,
-code,
+/* Standalone highlight (no language wrapper) */
 .highlight {
-  background: var(--code-bg) !important;
-  color: var(--muted-ink) !important;
-  border-radius: 6px !important;
-  padding: 0.5em !important;
+  background: var(--highlight-bg-color) !important;
+  border-radius: 4px !important;
   overflow: auto;
+  padding: 0.75rem 0 !important;
 }
 
-/* Remove heavy decorations for a flat look */
-.card,
-.post-preview,
-.btn-box-shadow,
-.site-banner,
-.toc-wrap {
+/* Pre inside code blocks */
+.highlight pre {
+  background: transparent !important;
+  border: none !important;
+  margin-bottom: 0;
+  font-family: 'JetBrains Mono', 'Consolas', monospace !important;
+  font-size: 0.85rem !important;
+  line-height: 1.4rem;
+  color: var(--retro-text) !important;
+}
+
+/* Code element inside highlight blocks — reset inline-code styles */
+.highlight code {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  color: inherit !important;
+  font-size: inherit !important;
+  border-radius: 0 !important;
+}
+
+/* Code header (language label + copy button) */
+.code-header {
+  background: var(--retro-bg-elevated) !important;
+  border-bottom: 1px solid var(--retro-border) !important;
+  border-radius: 4px 4px 0 0;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 0.75rem !important;
+  padding-right: 0.25rem !important;
+}
+
+.code-header span::after {
+  color: var(--retro-text-dim) !important;
+}
+
+.code-header button i {
+  color: var(--retro-text-dim) !important;
+}
+
+.code-header button:not([timeout]):hover i {
+  color: var(--retro-green) !important;
+}
+
+/* Line numbers */
+.highlight .lineno {
+  color: var(--retro-text-dim) !important;
+  opacity: 0.6;
+}
+
+td.rouge-code {
+  padding-left: 0.75rem;
+  padding-right: 1rem;
+}
+
+/* Highlighter-rouge wrapper (both block and inline) */
+.highlighter-rouge {
+  color: var(--retro-cyan) !important;
+}
+
+/* ===== Inline Code ===== */
+code.highlighter-rouge {
+  background: var(--inline-code-bg) !important;
+  color: var(--retro-cyan) !important;
+  border-radius: 3px !important;
+  padding: 0.15em 0.4em !important;
+  font-size: 0.9em !important;
+  border: 1px solid rgba(0, 255, 65, 0.08) !important;
+}
+
+/* Filepath styled code */
+code.filepath {
+  background: transparent !important;
+  color: var(--retro-amber) !important;
+  border: none !important;
+}
+
+/* Code inside blockquotes — inherit color */
+blockquote code {
+  color: inherit !important;
+}
+
+/* ===== Syntax Highlighting Colors ===== */
+.highlight .k, .highlight .kd, .highlight .kn,
+.highlight .kp, .highlight .kr, .highlight .kt { color: var(--retro-purple) !important; }
+.highlight .s, .highlight .s1, .highlight .s2,
+.highlight .se, .highlight .sh, .highlight .sx { color: var(--retro-amber) !important; }
+.highlight .c, .highlight .c1, .highlight .cm,
+.highlight .cs, .highlight .cp  { color: var(--retro-text-dim) !important; font-style: italic; }
+.highlight .nf, .highlight .nb  { color: var(--retro-cyan) !important; }
+.highlight .nn, .highlight .nc  { color: var(--retro-green) !important; }
+.highlight .mi, .highlight .mf,
+.highlight .mh, .highlight .mo  { color: var(--retro-amber) !important; }
+.highlight .o, .highlight .ow   { color: var(--retro-text) !important; }
+.highlight .nv, .highlight .vi,
+.highlight .gp                   { color: var(--retro-cyan-dim) !important; }
+.highlight .nt                   { color: var(--retro-magenta) !important; }
+.highlight .na                   { color: var(--retro-amber) !important; }
+.highlight .p                    { color: var(--retro-text) !important; }
+
+/* ===== Breadcrumb ===== */
+#topbar #breadcrumb {
+  font-size: 1.15rem !important;
+  font-family: 'Share Tech Mono', monospace !important;
+  padding-left: 0.6rem !important;
+}
+
+/* Main page: span without link */
+#topbar #breadcrumb span:only-child {
+  padding: 0.2rem !important;
+}
+
+/* Post page: link inside span */
+#topbar #breadcrumb span a {
+  padding: 0.2rem !important;
+  box-shadow: inset 0 0 0 1px transparent !important;
+}
+
+#topbar #breadcrumb span:has(a) {
+  padding: 0 !important;
+}
+
+#topbar #breadcrumb a:focus,
+#topbar #breadcrumb a:active {
+  outline: none !important;
+  box-shadow: inset 0 0 0 1px var(--retro-green-dim) !important;
+}
+
+/* ===== Topbar / Search ===== */
+#topbar-wrapper {
+  background: transparent !important;
+  border-bottom: none !important;
+  height: auto !important;
+  min-height: 3rem !important;
+  padding-top: 0.75rem !important;
+  padding-bottom: 0.75rem !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* Clip topbar pseudo-element at #main-wrapper edges */
+#main-wrapper {
+  overflow-x: clip !important;
+}
+
+/* Full-width topbar background via pseudo-element */
+#topbar-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -50vw;
+  right: -50vw;
+  background: var(--topbar-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--retro-border);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Search container — rectangular, aligned with right column */
+search#search {
+  border-radius: 4px !important;
+  border: 1px solid var(--retro-border) !important;
+  background: var(--retro-bg-surface) !important;
+  margin-right: -0.75rem !important;
+  margin-left: 2rem !important;
+  width: 320px !important;
+  min-width: 320px !important;
+  max-width: 320px !important;
+  flex-shrink: 0 !important;
+  padding: 0.35rem 0.75rem !important;
+}
+
+search#search i {
+  color: var(--retro-green-dim) !important;
+  font-size: 1rem !important;
+}
+
+/* Search input — no inner border, inherits container shape */
+#search-input,
+#search-input:focus {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  color: var(--retro-text) !important;
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: 1rem !important;
   box-shadow: none !important;
-  background-image: none !important;
+  outline: none !important;
+  padding: 0.3rem 0.5rem !important;
 }
 
-/* Images: gentle borders and spacing */
-img,
-.post img {
-  /* keep small images and inline images gently inset */
-  background: var(--cream-50) !important;
-  border-radius: 4px;
+/* Green border on the container when input is focused */
+search#search:focus-within {
+  border-color: var(--retro-green-dim) !important;
+  box-shadow: 0 0 8px var(--retro-green-glow) !important;
+}
+
+/* Search cancel button */
+#search-cancel {
+  color: var(--retro-cyan) !important;
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: 0.8rem !important;
+}
+
+/* Search results wrapper */
+#search-result-wrapper {
+  background: var(--retro-bg) !important;
+}
+
+#search-results a {
+  background: var(--retro-bg-surface) !important;
+  border: 1px solid var(--retro-border) !important;
+  border-radius: 4px !important;
+}
+#search-results a:hover {
+  background: var(--retro-bg-elevated) !important;
+  border-color: var(--retro-green-dim) !important;
+}
+
+#search-hints .post-tag {
+  background: transparent !important;
+  color: var(--retro-purple) !important;
+  border: 1px solid var(--retro-purple) !important;
+  border-radius: 2px !important;
+  font-size: 0.85rem !important;
+}
+
+/* ===== TOC ===== */
+.toc a.active {
+  color: var(--retro-green) !important;
+  border-left-color: var(--retro-green) !important;
+  text-shadow: 0 0 5px var(--retro-green-glow);
+}
+
+.toc a {
+  color: var(--retro-text-dim) !important;
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: 0.8rem !important;
+  transition: color 0.2s !important;
+}
+.toc a:hover {
+  color: var(--retro-green) !important;
+}
+
+/* ===== Blockquotes ===== */
+blockquote:not([class^="prompt-"]) {
+  border-left: 3px solid var(--retro-green-dim) !important;
+  background: rgba(0, 255, 65, 0.03) !important;
+  padding: 0.75em 1em !important;
+  color: var(--retro-text) !important;
+  font-style: italic;
+}
+
+/* Prompts — preserve icon space */
+blockquote[class^="prompt-"] {
+  border-left: none !important;
+  padding: 1rem 1rem 1rem 3rem !important;
+  font-style: normal !important;
+}
+
+/* ===== Tags & Badges ===== */
+.tag, .label, .badge, .post-tag, .btn-outline-primary.post-tag {
+  background: transparent !important;
+  color: var(--retro-purple) !important;
+  border: 1px solid var(--retro-purple) !important;
+  border-radius: 2px !important;
+  padding: 0.2rem 0.5rem !important;
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: 0.85rem !important;
+  letter-spacing: 0.03em;
+  transition: all 0.2s !important;
+}
+.tag:hover, .badge:hover {
+  background: rgba(168, 85, 247, 0.1) !important;
+  box-shadow: 0 0 8px rgba(168, 85, 247, 0.2) !important;
+}
+
+/* ===== Buttons & Inputs ===== */
+button, .btn, input, textarea, select {
+  background: var(--retro-bg-surface) !important;
+  color: var(--retro-text) !important;
+  border: 1px solid var(--retro-border) !important;
+  border-radius: 3px !important;
+  font-family: 'JetBrains Mono', monospace !important;
+  box-shadow: none !important;
+  transition: border-color 0.2s, box-shadow 0.2s !important;
+}
+button:hover, .btn:hover {
+  border-color: var(--retro-green-dim) !important;
+  box-shadow: 0 0 8px var(--retro-green-glow) !important;
+}
+
+/* ===== Images ===== */
+img:not(.preview-img), .post img:not(.preview-img) {
+  background: transparent !important;
+  border-radius: 3px;
   max-width: 100%;
   height: auto;
-  display: inline-block;
 }
 
-/* Make images inside the article card sit flush with the card border
-   - remove the image's separate border so there's no visual gap
-   - force block layout with no margins/padding so the image touches the edge
-   - ensure the image fills its container height and uses object-fit to crop
-   - apply matching top-right and bottom-right radii so corners align */
-#post-list article.card-wrapper img {
-  border: 0px solid rgba(43, 36, 31, 0.18) !important;
+/* Post content images: same width as text, centered */
+.post-content img:not(.preview-img),
+.post-body img:not(.preview-img),
+.content img:not(.preview-img) {
   display: block !important;
-  margin: 0 !important;
-  padding: 0 !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  height: auto !important;
+  object-fit: contain !important;
+  border: 1px solid var(--retro-border) !important;
+  border-radius: 4px !important;
+  margin-top: 1.5rem !important;
+  margin-bottom: 1.5rem !important;
+}
+
+/* Post featured/banner images — preserve Chirpy defaults */
+.preview-img {
   background: transparent !important;
 }
 
-/* Target common thumbnail/cover selectors used in Chirpy-based cards */
-#post-list article.card-wrapper .post-cover img,
-#post-list article.card-wrapper .post-thumbnail img,
-#post-list article.card-wrapper .thumb img,
+.preview-img img {
+  object-fit: cover !important;
+}
+
+/* Card preview images: fill their container, preserve Chirpy defaults */
+#post-list article.card-wrapper .preview-img img,
 #post-list article.card-wrapper .post-preview img {
   width: 100% !important;
   height: 100% !important;
-  max-width: none !important;
   object-fit: cover !important;
-  display: block !important;
-  border-top-right-radius: 10px !important;
-  border-bottom-right-radius: 10px !important;
-  border-top-left-radius: 0 !important;
-  border-bottom-left-radius: 0 !important;
-}
-
-/* Ensure the preview container itself doesn't add padding between border and image */
-#post-list article.card-wrapper .post-preview,
-#post-list article.card-wrapper .post-thumb,
-#post-list article.card-wrapper .post-cover,
-#post-list article.card-wrapper .post-thumbnail {
-  padding: 0 !important;
   margin: 0 !important;
-  /* make the image column more prominent so it covers the right side of the card */
-  flex: 0 0 100% !important;
-  min-width: 240px !important;
-  max-width: 100% !important;
+  border: none !important;
+  border-radius: 0 !important;
+}
+
+/* Card preview image container */
+#post-list article.card-wrapper .preview-img,
+#post-list article.card-wrapper .preview-img img {
   overflow: hidden !important;
+  background: transparent !important;
+  border-radius: 0 !important;
 }
 
-/* Ensure the textual/card content expands to fill available space */
-#post-list article.card-wrapper .card-body,
-#post-list article.card-wrapper .post-body,
-#post-list article.card-wrapper .post-card-content,
-#post-list article.card-wrapper .post-meta {
-  flex: 1 1 62% !important;
-  padding: 1rem 1.25rem !important;
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: center !important; /* vertically center content within the card */
-  align-items: flex-start !important; /* keep text left-aligned */
+/* ===== Footer ===== */
+.site-footer, .copyright {
+  color: var(--retro-text-dim) !important;
+  font-size: 0.8rem !important;
+  font-family: 'JetBrains Mono', monospace !important;
 }
 
-/* Footer small print */
-.site-footer,
-.copyright {
-  color: var(--muted-muted) !important;
-  font-size: 0.95rem;
+/* ===== Scrollbar ===== */
+* {
+  scrollbar-color: var(--retro-border) var(--retro-bg-deep);
+  scrollbar-width: thin;
 }
 
-/* Sidebar: keep compact and airy */
-.sidebar {
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--retro-bg-deep);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--retro-border);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--retro-green-dim);
+}
+
+/* Code block scrollbar — green tint */
+.highlight,
+div[class^='language-'] .highlight {
+  scrollbar-color: var(--retro-green-dim) var(--highlight-bg-color);
+}
+
+.highlight::-webkit-scrollbar-track,
+div[class^='language-'] .highlight::-webkit-scrollbar-track {
+  background: var(--highlight-bg-color);
+}
+
+.highlight::-webkit-scrollbar-thumb,
+div[class^='language-'] .highlight::-webkit-scrollbar-thumb {
+  background: var(--retro-green-dim);
+  border-radius: 4px;
+}
+
+/* ===== Accessibility - Focus States ===== */
+a:focus, button:focus, input:focus, textarea:focus {
+  outline: 1px solid var(--retro-green-dim) !important;
+  outline-offset: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Sidebar nav links — subtle click highlight */
+#sidebar a:focus,
+#sidebar a:active,
+#sidebar .nav-link:focus,
+#sidebar .nav-link:active {
+  outline: 1px solid var(--retro-green-dim) !important;
+  outline-offset: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Right panel links — subtle click highlight */
+#panel-wrapper a:focus,
+#panel-wrapper a:active,
+#panel-wrapper .btn:focus,
+#panel-wrapper .btn:active {
+  outline: none !important;
+  box-shadow: inset 0 0 0 1px var(--retro-green-dim) !important;
+  padding: 0.2rem !important;
+}
+
+/* No focus/active outline glow on post card links */
+#post-list article.card-wrapper a.post-preview:focus,
+#post-list article.card-wrapper a.post-preview:active,
+#post-list article.card-wrapper a.post-preview:focus-visible {
+  outline: none !important;
+  outline-offset: 0 !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* Tapping/clicking a card shows the same border as hover */
+#post-list article.card-wrapper:focus-within,
+#post-list article.card-wrapper:has(a:active) {
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: var(--retro-green-dim) !important;
+  border-width: 1px !important;
+  border-style: solid !important;
+  transform: none !important;
+}
+
+/* ===== Right Panel (Recently Updated / Trending Tags) ===== */
+#panel-wrapper {
+  font-family: 'JetBrains Mono', monospace !important;
+  min-width: 0 !important;
+  padding-left: 0.75rem !important;
+  padding-right: 0 !important;
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* TOC sticks while scrolling, Recently Updated / Trending Tags scroll away */
+#panel-wrapper #toc-wrapper,
+#panel-wrapper .toc-wrap {
+  position: sticky !important;
+  top: 5rem !important;
+  max-height: calc(100vh - 6rem) !important;
+  margin-top: 0 !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  border: 1px solid var(--retro-border) !important;
+  border-radius: 4px !important;
+  background: var(--retro-bg-surface) !important;
+  padding: 1rem !important;
+  scrollbar-width: thin !important;
+}
+
+#panel-wrapper #toc-wrapper nav#toc,
+#panel-wrapper .toc-wrap nav#toc {
+  max-height: calc(100vh - 7rem) !important;
+  overflow-y: auto !important;
+  scrollbar-width: thin !important;
+  scroll-behavior: smooth !important;
+}
+
+/* TOC link styling */
+#panel-wrapper nav#toc .toc-link {
+  position: relative !important;
+  padding-left: 1rem !important;
+  border-left: 2px solid transparent !important;
+}
+
+#panel-wrapper nav#toc .toc-link::before {
+  display: none !important;
+}
+
+/* Active TOC link — left border indicator */
+#panel-wrapper nav#toc .is-active-link {
+  color: var(--retro-green) !important;
+  border-left: 2px solid var(--retro-green) !important;
+  text-shadow: 0 0 5px var(--retro-green-glow);
+}
+
+#panel-wrapper nav#toc .is-active-link::before {
+  display: none !important;
+}
+
+/* Nested TOC items alignment */
+#panel-wrapper nav#toc ul ul {
+  padding-left: 0.75rem !important;
+  border-left: 1px solid var(--retro-border) !important;
+  margin-left: 0.5rem !important;
+}
+
+#panel-wrapper .access {
+  margin-top: 0.5rem !important;
+  border: 1px solid var(--retro-border) !important;
+  border-radius: 4px !important;
+  padding: 1rem !important;
+  background: var(--retro-bg-surface) !important;
+  position: relative !important;
+  z-index: 3 !important;
+  margin-bottom: 2rem !important;
+}
+
+/* Hide Chirpy's gradient cover elements that overlap the panel border */
+.toc-border-cover {
+  display: none !important;
+}
+
+#toc-wrapper::before,
+#toc-wrapper::after {
+  display: none !important;
+}
+
+#panel-wrapper .panel-heading {
+  font-family: 'Share Tech Mono', monospace !important;
+  color: var(--retro-green) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  font-size: 1.1rem !important;
+  border-bottom: 1px solid var(--retro-border) !important;
+  padding-bottom: 0.4rem !important;
+  margin-bottom: 0.6rem !important;
+}
+
+/* Recently Updated list */
+#access-lastmod ul {
+  list-style: none !important;
+  padding-left: 0 !important;
+}
+
+#access-lastmod ul li a {
+  color: var(--retro-text-dim) !important;
+  font-size: 0.8rem !important;
+  transition: color 0.2s !important;
+}
+#access-lastmod ul li a:hover {
+  color: var(--retro-green) !important;
+}
+
+/* Trending Tags in panel */
+#panel-wrapper .access .post-tag,
+#panel-wrapper .access .btn.btn-outline-primary {
+  background: transparent !important;
+  color: var(--retro-purple) !important;
+  border: 1px solid var(--retro-purple) !important;
+  border-radius: 2px !important;
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: 0.85rem !important;
+  padding: 0.2rem 0.5rem !important;
+  transition: all 0.2s !important;
+}
+#panel-wrapper .access .post-tag:hover,
+#panel-wrapper .access .btn.btn-outline-primary:hover {
+  background: rgba(168, 85, 247, 0.15) !important;
+  border-color: var(--retro-purple) !important;
+  box-shadow: 0 0 10px rgba(168, 85, 247, 0.3) !important;
+  color: #c084fc !important;
+}
+
+/* ===== Post Navigation (Older / Newer) ===== */
+.post-navigation {
+  gap: 0.75rem !important;
+}
+
+.post-navigation .btn.btn-outline-primary {
+  background: transparent !important;
+  color: var(--retro-text) !important;
+  border: 1px solid var(--retro-border) !important;
+  border-radius: 4px !important;
+  font-family: 'JetBrains Mono', monospace !important;
+  transition: all 0.2s !important;
+}
+.post-navigation .btn.btn-outline-primary:hover {
+  background: rgba(0, 255, 65, 0.06) !important;
+  border-color: var(--retro-green) !important;
+  box-shadow: 0 0 10px var(--retro-green-glow) !important;
+  color: var(--retro-green) !important;
+  text-shadow: none !important;
+  outline: none !important;
+}
+.post-navigation .btn.btn-outline-primary:focus {
+  outline: none !important;
+  box-shadow: 0 0 10px var(--retro-green-glow) !important;
+  border-color: var(--retro-green) !important;
+}
+.post-navigation .btn.btn-outline-primary.disabled {
+  color: var(--retro-text-dim) !important;
+  border-color: var(--retro-border) !important;
+  opacity: 0.5 !important;
+}
+.post-navigation .btn.btn-outline-primary p {
+  color: var(--retro-text-dim) !important;
+}
+
+/* ===== Mermaid & Third-party Widgets ===== */
+.mermaid {
+  background: var(--retro-bg-surface) !important;
+  border: 1px solid var(--retro-border) !important;
+  border-radius: 4px !important;
   padding: 1rem !important;
 }
 
-/* Accessibility: focus states */
-a:focus,
-button:focus,
-input:focus,
-textarea:focus {
-  outline: 2px dashed var(--accent-strong) !important;
-  outline-offset: 2px !important;
-}
-
-/* Reduce visual noise for tags, badges */
-.tag,
-.label,
-.badge {
-  background: transparent !important;
-  color: var(--muted-muted) !important;
-  border: 1px solid var(--border) !important;
-  border-radius: 999px !important;
-  padding: 0.15em 0.5em !important;
-}
-
-/* Small adjustments for responsiveness */
-@media (max-width: 768px) {
-  header,
-  footer,
-  .sidebar {
-    padding-left: 0.75rem !important;
-    padding-right: 0.75rem !important;
-  }
-}
-
-/* Keep third-party widget colors neutral when possible */
 .glightbox-clean,
-.mermaid,
 .simple-jekyll-search,
 .tocbot {
   background: transparent !important;
 }
 
-/* Card styling: stable rounded border and no layout-shifting on hover */
-#post-list article.card-wrapper {
-  box-sizing: border-box !important;
-  border: 1px solid rgba(43, 36, 31, 0.18) !important; /* softer warm border so the card integrates with the cream palette */
-  border-radius: 10px !important;
-  overflow: hidden !important; /* clip inner content without shifting layout */
-  background-clip: padding-box !important;
-  padding: 0 !important;
-  display: flex !important;
-  flex-direction: row !important;
-  align-items: stretch !important; /* make image column match content height */
-}
-
-/* Neutralize any theme hover transforms or shadows that cause spacing mismatch */
-#post-list .post-preview:hover,
-#post-list article.card-wrapper:hover {
-  transform: none !important;
-  box-shadow: none !important;
-}
-
-/* Remove any inner gray panels the theme may add (keeps preview content on cream) */
-.card-body,
-.post-preview,
-.card-wrapper .card-body,
-.card {
-  background: transparent !important;
-}
-
-/* Subtle card hover tint (no layout shift) */
-#post-list article.card-wrapper:hover {
-  background-color: rgba(43, 36, 31, 0.03) !important;
-}
-
-/* Style the search input to remove the dark rounded background shown previously */
-#search-input,
-#search input,
-search input {
-  background: var(--cream-50) !important;
-  border: 1px solid var(--border) !important;
-  color: var(--muted-ink) !important;
-  border-radius: 999px !important;
-  padding: 0.25rem 0.75rem !important;
-}
-
-/* Prevent focus outlines from adding extra space */
-#post-list .post-preview:focus,
-#post-list article.card-wrapper:focus {
-  outline: none !important;
-}
-
-/* Card titles: allow full title to display (remove truncation/clamping) */
+/* ===== Card Titles: allow full display ===== */
 #post-list article.card-wrapper .post-title,
 #post-list article.card-wrapper .card-title,
 #post-list article.card-wrapper .post-card-title,
-#post-list article.card-wrapper .post-card-content .title,
 #post-list article.card-wrapper h2.title,
-#post-list article.card-wrapper h3.title,
-#post-list article.card-wrapper .post-preview .title,
-#post-list article.card-wrapper .post-card-content h2,
-#post-list article.card-wrapper .post-card-content h3 {
+#post-list article.card-wrapper h3.title {
   white-space: normal !important;
   overflow: visible !important;
   text-overflow: clip !important;
@@ -325,10 +1173,342 @@ search input {
   margin: 0 0 0.5rem 0 !important;
 }
 
-/* Ensure the linked title content also wraps */
 #post-list article.card-wrapper .post-title a,
-#post-list article.card-wrapper .card-title a,
-#post-list article.card-wrapper .post-card-title a {
+#post-list article.card-wrapper .card-title a {
   white-space: normal !important;
   display: inline !important;
+}
+
+/* ===== Responsive ===== */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .post-content img,
+  .post-body img,
+  article img:not(#avatar img) {
+    max-width: 100% !important;
+  }
+}
+
+/* Tablet */
+@media (max-width: 849px) {
+  /* Reset desktop layout overrides */
+  main.col-12 {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+  }
+
+  #panel-wrapper {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+    padding-left: 0 !important;
+  }
+
+  .container {
+    max-width: 100% !important;
+    padding: 0 1rem !important;
+  }
+
+  /* Post content full width */
+  article.px-1 {
+    max-width: 100% !important;
+  }
+
+  /* Search bar adapts */
+  search#search {
+    width: auto !important;
+    min-width: unset !important;
+    max-width: 100% !important;
+    margin-left: 1rem !important;
+    margin-right: 0 !important;
+  }
+
+  /* Topbar */
+  #topbar-wrapper {
+    height: auto !important;
+    min-height: auto !important;
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+  }
+
+  #topbar #breadcrumb {
+    font-size: 0.9rem !important;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  html, body {
+    font-size: 14px !important;
+  }
+
+  body::after {
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.015) 0px,
+      rgba(0, 0, 0, 0.015) 1px,
+      transparent 1px,
+      transparent 4px
+    );
+  }
+
+  body::before {
+    background: radial-gradient(
+      ellipse at center,
+      transparent 70%,
+      rgba(0, 0, 0, 0.15) 100%
+    );
+  }
+
+  h1 { font-size: 1.4rem !important; }
+  h2 { font-size: 1.2rem !important; }
+  h3 { font-size: 1.05rem !important; }
+
+  /* Post cards stack vertically */
+  #post-list {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  #post-list article.card-wrapper {
+    overflow: hidden !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    border: 1px solid var(--retro-border) !important;
+    border-radius: 4px !important;
+    -webkit-tap-highlight-color: transparent !important;
+  }
+
+  #post-list article.card-wrapper a.post-preview {
+    -webkit-tap-highlight-color: transparent !important;
+    touch-action: manipulation !important;
+  }
+
+  #post-list article.card-wrapper::before {
+    font-size: 0.6rem;
+    padding: 3px 8px;
+  }
+
+  #post-list article.card-wrapper:hover {
+    border-color: var(--retro-green-dim) !important;
+    border-width: 1px !important;
+    border-style: solid !important;
+    box-shadow: none !important;
+    transform: none !important;
+    outline: none !important;
+  }
+
+  #post-list article.card-wrapper:has(a:active),
+  #post-list article.card-wrapper:has(a:focus),
+  #post-list article.card-wrapper:focus-within {
+    border-color: var(--retro-green-dim) !important;
+    border-width: 1px !important;
+    border-style: solid !important;
+    box-shadow: none !important;
+    transform: none !important;
+    outline: none !important;
+  }
+
+  #post-list article.card-wrapper a.post-preview:hover,
+  #post-list article.card-wrapper a.post-preview:focus,
+  #post-list article.card-wrapper a.post-preview:active,
+  #post-list article.card-wrapper a.post-preview:focus-visible {
+    outline: none !important;
+    box-shadow: none !important;
+    border: none !important;
+    text-decoration: none !important;
+  }
+
+  #post-list article.card-wrapper .post-preview {
+    flex-direction: column !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  #post-list article.card-wrapper .col-md-5,
+  #post-list article.card-wrapper .col-md-7 {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: 0 0 100% !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  #post-list article.card-wrapper .col-md-5 img {
+    max-height: 180px !important;
+    width: 100% !important;
+    object-fit: cover !important;
+  }
+
+  #post-list article.card-wrapper .card-body {
+    display: flex !important;
+    padding: 0.75rem 1rem !important;
+  }
+
+  .card-body h1, .card-body h2, .card-body .card-title {
+    font-size: 1rem !important;
+  }
+
+  /* Images full width */
+  .post-content img:not(.preview-img),
+  .post-body img:not(.preview-img),
+  .content img:not(.preview-img),
+  article img:not(#avatar img):not(.preview-img) {
+    max-width: 100% !important;
+    margin-top: 1rem !important;
+    margin-bottom: 1rem !important;
+  }
+
+  /* Banner image — no extra margin */
+  img.preview-img {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  /* Code blocks on mobile */
+  div[class^='language-'] {
+    border-radius: 0 !important;
+    margin-left: -0.5rem !important;
+    margin-right: -0.5rem !important;
+    box-shadow: none !important;
+    border-top: 1px solid var(--retro-border) !important;
+    border-bottom: 1px solid var(--retro-border) !important;
+  }
+
+  div[class^='language-'] .highlight {
+    border-radius: 0 !important;
+  }
+
+  div[class^='language-'] .code-header {
+    border-radius: 0 !important;
+  }
+
+  .highlight pre {
+    font-size: 0.78rem !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  blockquote:not([class^="prompt-"]) {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding: 0.5em 0.75em !important;
+  }
+
+  /* Hide TOC on mobile */
+  .toc-wrap, #toc-wrapper {
+    display: none !important;
+  }
+
+  /* Right panel stacks below content */
+  #panel-wrapper .access {
+    margin-top: 1rem !important;
+  }
+
+  /* Post navigation stacks */
+  .post-navigation {
+    flex-direction: column !important;
+    gap: 0.5rem !important;
+  }
+
+  .post-navigation .btn.btn-outline-primary {
+    width: 100% !important;
+    text-align: center !important;
+  }
+
+  /* Tags wrap */
+  .post-tags, .tag, .post-tag, .badge {
+    font-size: 0.8rem !important;
+  }
+
+  header, footer, .sidebar {
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+  }
+
+  /* Even left/right margins */
+  #main-wrapper {
+    margin-left: 0 !important;
+  }
+
+  #sidebar-trigger {
+    padding: 0.5rem !important;
+    margin-right: auto !important;
+    margin-left: -0.75rem !important;
+  }
+
+  #search-trigger {
+    padding: 0.5rem !important;
+    margin-left: auto !important;
+    margin-right: -0.75rem !important;
+  }
+
+  main.col-12,
+  #tail-wrapper {
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  /* Prevent horizontal overflow but allow card borders to show */
+  body, html {
+    overflow-x: hidden !important;
+  }
+
+  .main-content, .container {
+    max-width: 100vw !important;
+  }
+
+  table:not(.rouge-table) {
+    display: block !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+  }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+  html, body {
+    font-size: 13px !important;
+  }
+
+  .site-title {
+    font-size: 1.2rem !important;
+  }
+
+  .site-subtitle {
+    font-size: 0.7rem !important;
+  }
+
+  #post-list article.card-wrapper::before {
+    content: '> _ EM://posts';
+    font-size: 0.55rem;
+  }
+
+  /* Search bar compact */
+  search#search {
+    margin-left: 0.5rem !important;
+    padding: 0.25rem 0.5rem !important;
+  }
+
+  #search-input {
+    font-size: 0.85rem !important;
+  }
+}
+
+/* ===== Reduced Motion ===== */
+@media (prefers-reduced-motion: reduce) {
+  .site-title::after {
+    animation: none !important;
+  }
+  body::after, body::before {
+    display: none;
+  }
+  * {
+    transition-duration: 0s !important;
+  }
 }

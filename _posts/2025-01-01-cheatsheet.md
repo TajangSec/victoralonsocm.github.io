@@ -201,3 +201,8 @@ The image below will toggle dark/light mode based on theme preference, notice it
 ## Example:
 
 https://c0by.de/blog/posts/chirpy_cheatsheet/#code-block
+
+## Other examples:
+
+https://klezvirus.github.io/
+https://github.com/klezVirus/klezVirus.github.io
