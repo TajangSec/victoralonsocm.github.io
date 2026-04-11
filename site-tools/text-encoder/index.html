@@ -1,0 +1,628 @@
+---
+layout: page
+title: Text Encoder / Decoder
+---
+
+<style>
+/* ===== Tool Container ===== */
+.encoder-tool {
+  background: var(--retro-bg-surface);
+  border: 1px solid var(--retro-border);
+  border-radius: 4px;
+  padding: 1.25rem;
+  margin-top: 0.5rem;
+}
+
+/* ===== Controls Bar ===== */
+.encoder-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--retro-border);
+}
+
+.encoder-controls label {
+  font-family: 'Share Tech Mono', monospace;
+  color: var(--retro-text-dim);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-right: 0.25rem;
+}
+
+.format-select {
+  background: var(--retro-bg-elevated) !important;
+  color: var(--retro-text) !important;
+  border: 1px solid var(--retro-border) !important;
+  border-radius: 3px !important;
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: 0.85rem !important;
+  padding: 0.35rem 0.5rem !important;
+  cursor: pointer;
+  min-width: 160px;
+  transition: border-color 0.2s, box-shadow 0.2s !important;
+}
+
+.format-select:focus-visible {
+  border-color: var(--retro-green-dim) !important;
+  box-shadow: 0 0 8px var(--retro-green-glow) !important;
+  outline: none;
+}
+
+.format-select option {
+  background: var(--retro-bg-elevated);
+  color: var(--retro-text);
+}
+
+/* ===== Mode Toggle ===== */
+.mode-toggle {
+  display: flex;
+  gap: 0;
+  margin-left: 0.5rem;
+}
+
+.mode-btn {
+  font-family: 'Share Tech Mono', monospace !important;
+  font-size: 0.8rem !important;
+  padding: 0.35rem 0.75rem !important;
+  background: var(--retro-bg-elevated) !important;
+  color: var(--retro-text-dim) !important;
+  border: 1px solid var(--retro-border) !important;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s, box-shadow 0.2s !important;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.mode-btn:first-child {
+  border-radius: 3px 0 0 3px !important;
+  border-right: none !important;
+}
+
+.mode-btn:last-child {
+  border-radius: 0 3px 3px 0 !important;
+}
+
+.mode-btn.active {
+  color: var(--retro-green) !important;
+  border-color: var(--retro-green) !important;
+  box-shadow: 0 0 8px var(--retro-green-glow) !important;
+  background: rgba(0, 255, 65, 0.06) !important;
+  z-index: 1;
+  position: relative;
+}
+
+.mode-btn:hover:not(.active) {
+  border-color: var(--retro-green-dim) !important;
+  color: var(--retro-text) !important;
+}
+
+/* ===== Action Buttons ===== */
+.action-btn {
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: 0.8rem !important;
+  padding: 0.35rem 0.6rem !important;
+  background: var(--retro-bg-elevated) !important;
+  color: var(--retro-text-dim) !important;
+  border: 1px solid var(--retro-border) !important;
+  border-radius: 3px !important;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s, box-shadow 0.2s !important;
+}
+
+.action-btn:hover {
+  border-color: var(--retro-green-dim) !important;
+  color: var(--retro-green) !important;
+  box-shadow: 0 0 8px var(--retro-green-glow) !important;
+}
+
+.controls-right {
+  display: flex;
+  gap: 0.5rem;
+  margin-left: auto;
+}
+
+/* ===== Text Panels ===== */
+.encoder-panels {
+  display: flex;
+  gap: 1rem;
+}
+
+.encoder-panel {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-label {
+  font-family: 'Share Tech Mono', monospace;
+  color: var(--retro-text-dim);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.panel-label i {
+  color: var(--retro-green-dim);
+  font-size: 0.65rem;
+}
+
+.encoder-textarea {
+  width: 100%;
+  min-height: 280px;
+  background: var(--retro-bg-elevated) !important;
+  color: var(--retro-green) !important;
+  border: 1px solid var(--retro-border) !important;
+  border-radius: 3px !important;
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: 0.85rem !important;
+  line-height: 1.5;
+  padding: 0.75rem !important;
+  resize: vertical;
+  transition: border-color 0.2s, box-shadow 0.2s !important;
+  box-shadow: none !important;
+}
+
+.encoder-textarea:focus {
+  border-color: var(--retro-green-dim) !important;
+  box-shadow: 0 0 8px var(--retro-green-glow) !important;
+  outline: none;
+}
+
+.encoder-textarea::placeholder {
+  color: var(--retro-text-dim);
+  opacity: 0.6;
+}
+
+.encoder-textarea[readonly] {
+  color: var(--retro-cyan) !important;
+  cursor: default;
+}
+
+/* ===== Status Bar ===== */
+.encoder-status {
+  min-height: 1.4rem;
+  margin-top: 0.75rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.status-error {
+  color: var(--retro-magenta);
+}
+
+.status-success {
+  color: var(--retro-green);
+}
+
+.status-info {
+  color: var(--retro-text-dim);
+}
+
+/* ===== Char Count ===== */
+.char-count {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--retro-text-dim);
+  text-align: right;
+  margin-top: 0.25rem;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .encoder-tool {
+    padding: 0.75rem;
+    margin-left: -0.25rem;
+    margin-right: -0.25rem;
+  }
+
+  .encoder-panels {
+    flex-direction: column;
+  }
+
+  .encoder-textarea {
+    min-height: 180px;
+  }
+
+  .encoder-controls {
+    gap: 0.4rem;
+  }
+
+  .controls-right {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .format-select {
+    min-width: 0;
+    flex: 1;
+  }
+
+  .mode-toggle {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .encoder-controls label {
+    display: none;
+  }
+
+  .mode-btn {
+    font-size: 0.75rem !important;
+    padding: 0.3rem 0.5rem !important;
+  }
+
+  .action-btn {
+    font-size: 0.75rem !important;
+    padding: 0.3rem 0.5rem !important;
+  }
+}
+</style>
+
+<div class="encoder-tool">
+  <!-- Controls -->
+  <div class="encoder-controls">
+    <label for="format-select">Format</label>
+    <select id="format-select" class="format-select" aria-label="Encoding format">
+      <option value="base64">Base64</option>
+      <option value="url" selected>URL Encoding</option>
+      <option value="html-entity">HTML Entities</option>
+      <option value="hex">Hex (0x41)</option>
+      <option value="ascii-hex">ASCII Hex (41)</option>
+      <option value="binary">Binary</option>
+      <option value="decimal">Decimal</option>
+      <option value="octal">Octal</option>
+      <option value="rot13">ROT13</option>
+      <option value="unicode">Unicode (\u0041)</option>
+      <option value="utf8-hex">UTF-8 Hex</option>
+    </select>
+
+    <div class="mode-toggle">
+      <button type="button" class="mode-btn active" data-mode="encode" aria-label="Encode mode">Encode</button>
+      <button type="button" class="mode-btn" data-mode="decode" aria-label="Decode mode">Decode</button>
+    </div>
+
+    <div class="controls-right">
+      <button type="button" class="action-btn" id="btn-swap" aria-label="Swap input and output">
+        <i class="fas fa-exchange-alt"></i> Swap
+      </button>
+      <button type="button" class="action-btn" id="btn-clear" aria-label="Clear all">
+        <i class="fas fa-times"></i> Clear
+      </button>
+      <button type="button" class="action-btn" id="btn-copy" aria-label="Copy output to clipboard">
+        <i class="fas fa-copy"></i> Copy
+      </button>
+    </div>
+  </div>
+
+  <!-- Panels -->
+  <div class="encoder-panels">
+    <div class="encoder-panel">
+      <div class="panel-label"><i class="fas fa-chevron-right"></i> Input</div>
+      <textarea id="encoder-input" class="encoder-textarea" placeholder="Enter text to encode or decode..." spellcheck="false" autocomplete="off"></textarea>
+      <div class="char-count" id="input-count">0 chars</div>
+    </div>
+    <div class="encoder-panel">
+      <div class="panel-label"><i class="fas fa-chevron-right"></i> Output</div>
+      <textarea id="encoder-output" class="encoder-textarea" readonly placeholder="Result will appear here..."></textarea>
+      <div class="char-count" id="output-count">0 chars</div>
+    </div>
+  </div>
+
+  <!-- Status -->
+  <div class="encoder-status" id="encoder-status" aria-live="polite"></div>
+</div>
+
+<script>
+(function() {
+  'use strict';
+
+  var inputEl = document.getElementById('encoder-input');
+  var outputEl = document.getElementById('encoder-output');
+  var formatEl = document.getElementById('format-select');
+  var statusEl = document.getElementById('encoder-status');
+  var inputCount = document.getElementById('input-count');
+  var outputCount = document.getElementById('output-count');
+  var modeBtns = document.querySelectorAll('.mode-btn');
+  var currentMode = 'encode';
+  var debounceTimer = null;
+
+  /* ===== Codec Functions ===== */
+
+  function urlEncode(t) { return encodeURIComponent(t); }
+  function urlDecode(t) { return decodeURIComponent(t); }
+
+  function base64Encode(t) {
+    return btoa(unescape(encodeURIComponent(t)));
+  }
+  function base64Decode(t) {
+    t = t.replace(/\s/g, '');
+    return decodeURIComponent(escape(atob(t)));
+  }
+
+  function htmlEntityEncode(t) {
+    var out = '';
+    var chars = Array.from(t);
+    for (var i = 0; i < chars.length; i++) {
+      var c = chars[i];
+      var cp = c.codePointAt(0);
+      if (cp === 38) out += '&amp;';
+      else if (cp === 60) out += '&lt;';
+      else if (cp === 62) out += '&gt;';
+      else if (cp === 34) out += '&quot;';
+      else if (cp === 39) out += '&#39;';
+      else if (cp > 126 || cp < 32) out += '&#x' + cp.toString(16) + ';';
+      else out += c;
+    }
+    return out;
+  }
+  function htmlEntityDecode(t) {
+    var el = document.createElement('textarea');
+    el.innerHTML = t;
+    return el.value;
+  }
+
+  function hexEncode(t) {
+    var chars = Array.from(t);
+    var parts = [];
+    for (var i = 0; i < chars.length; i++) {
+      var cp = chars[i].codePointAt(0);
+      parts.push('0x' + cp.toString(16).padStart(cp > 0xffff ? 6 : cp > 0xff ? 4 : 2, '0'));
+    }
+    return parts.join(' ');
+  }
+  function hexDecode(t) {
+    var tokens = t.trim().split(/[\s,]+/);
+    var out = '';
+    for (var i = 0; i < tokens.length; i++) {
+      var s = tokens[i].replace(/^0x/i, '');
+      if (!/^[0-9a-fA-F]+$/.test(s)) throw new Error('Invalid hex token: ' + tokens[i]);
+      out += String.fromCodePoint(parseInt(s, 16));
+    }
+    return out;
+  }
+
+  function asciiHexEncode(t) {
+    var chars = Array.from(t);
+    var parts = [];
+    for (var i = 0; i < chars.length; i++) {
+      var cp = chars[i].codePointAt(0);
+      parts.push(cp.toString(16).padStart(cp > 0xffff ? 6 : cp > 0xff ? 4 : 2, '0'));
+    }
+    return parts.join(' ');
+  }
+  function asciiHexDecode(t) {
+    var tokens = t.trim().split(/[\s,]+/);
+    var out = '';
+    for (var i = 0; i < tokens.length; i++) {
+      if (!/^[0-9a-fA-F]+$/.test(tokens[i])) throw new Error('Invalid hex: ' + tokens[i]);
+      out += String.fromCodePoint(parseInt(tokens[i], 16));
+    }
+    return out;
+  }
+
+  function binaryEncode(t) {
+    var chars = Array.from(t);
+    var parts = [];
+    for (var i = 0; i < chars.length; i++) {
+      var cp = chars[i].codePointAt(0);
+      var bits = cp > 0xffff ? 21 : cp > 0xff ? 16 : 8;
+      parts.push(cp.toString(2).padStart(bits, '0'));
+    }
+    return parts.join(' ');
+  }
+  function binaryDecode(t) {
+    var tokens = t.trim().split(/[\s,]+/);
+    var out = '';
+    for (var i = 0; i < tokens.length; i++) {
+      if (!/^[01]+$/.test(tokens[i])) throw new Error('Invalid binary: ' + tokens[i]);
+      out += String.fromCodePoint(parseInt(tokens[i], 2));
+    }
+    return out;
+  }
+
+  function decimalEncode(t) {
+    var chars = Array.from(t);
+    var parts = [];
+    for (var i = 0; i < chars.length; i++) {
+      parts.push(chars[i].codePointAt(0).toString(10));
+    }
+    return parts.join(' ');
+  }
+  function decimalDecode(t) {
+    var tokens = t.trim().split(/[\s,]+/);
+    var out = '';
+    for (var i = 0; i < tokens.length; i++) {
+      if (!/^\d+$/.test(tokens[i])) throw new Error('Invalid decimal: ' + tokens[i]);
+      out += String.fromCodePoint(parseInt(tokens[i], 10));
+    }
+    return out;
+  }
+
+  function octalEncode(t) {
+    var chars = Array.from(t);
+    var parts = [];
+    for (var i = 0; i < chars.length; i++) {
+      parts.push(chars[i].codePointAt(0).toString(8));
+    }
+    return parts.join(' ');
+  }
+  function octalDecode(t) {
+    var tokens = t.trim().split(/[\s,]+/);
+    var out = '';
+    for (var i = 0; i < tokens.length; i++) {
+      if (!/^[0-7]+$/.test(tokens[i])) throw new Error('Invalid octal: ' + tokens[i]);
+      out += String.fromCodePoint(parseInt(tokens[i], 8));
+    }
+    return out;
+  }
+
+  function rot13(t) {
+    return t.replace(/[a-zA-Z]/g, function(c) {
+      var base = c <= 'Z' ? 65 : 97;
+      return String.fromCharCode(((c.charCodeAt(0) - base + 13) % 26) + base);
+    });
+  }
+
+  function unicodeEncode(t) {
+    var chars = Array.from(t);
+    var parts = [];
+    for (var i = 0; i < chars.length; i++) {
+      var cp = chars[i].codePointAt(0);
+      if (cp > 0xffff) parts.push('\\u{' + cp.toString(16) + '}');
+      else parts.push('\\u' + cp.toString(16).padStart(4, '0'));
+    }
+    return parts.join('');
+  }
+  function unicodeDecode(t) {
+    return t.replace(/\\u\{([0-9a-fA-F]+)\}|\\u([0-9a-fA-F]{4})/g, function(m, p1, p2) {
+      return String.fromCodePoint(parseInt(p1 || p2, 16));
+    });
+  }
+
+  function utf8HexEncode(t) {
+    var bytes = new TextEncoder().encode(t);
+    var parts = [];
+    for (var i = 0; i < bytes.length; i++) {
+      parts.push(bytes[i].toString(16).padStart(2, '0'));
+    }
+    return parts.join(' ');
+  }
+  function utf8HexDecode(t) {
+    var tokens = t.trim().split(/[\s,]+/);
+    var bytes = new Uint8Array(tokens.length);
+    for (var i = 0; i < tokens.length; i++) {
+      if (!/^[0-9a-fA-F]{1,2}$/.test(tokens[i])) throw new Error('Invalid UTF-8 hex: ' + tokens[i]);
+      bytes[i] = parseInt(tokens[i], 16);
+    }
+    return new TextDecoder('utf-8', { fatal: true }).decode(bytes);
+  }
+
+  var codecs = {
+    'url':         { encode: urlEncode,         decode: urlDecode },
+    'base64':      { encode: base64Encode,      decode: base64Decode },
+    'html-entity': { encode: htmlEntityEncode,   decode: htmlEntityDecode },
+    'hex':         { encode: hexEncode,          decode: hexDecode },
+    'ascii-hex':   { encode: asciiHexEncode,     decode: asciiHexDecode },
+    'binary':      { encode: binaryEncode,       decode: binaryDecode },
+    'decimal':     { encode: decimalEncode,      decode: decimalDecode },
+    'octal':       { encode: octalEncode,        decode: octalDecode },
+    'rot13':       { encode: rot13,              decode: rot13 },
+    'unicode':     { encode: unicodeEncode,      decode: unicodeDecode },
+    'utf8-hex':    { encode: utf8HexEncode,      decode: utf8HexDecode }
+  };
+
+  /* ===== Core Logic ===== */
+
+  function process() {
+    var text = inputEl.value;
+    inputCount.textContent = text.length + ' chars';
+
+    if (!text) {
+      outputEl.value = '';
+      outputCount.textContent = '0 chars';
+      clearStatus();
+      return;
+    }
+
+    var format = formatEl.value;
+    var codec = codecs[format];
+    if (!codec) return;
+
+    try {
+      var fn = codec[currentMode];
+      var result = fn(text);
+      outputEl.value = result;
+      outputCount.textContent = result.length + ' chars';
+      clearStatus();
+    } catch (e) {
+      outputEl.value = '';
+      outputCount.textContent = '0 chars';
+      showError(e.message || 'Invalid input for this format');
+    }
+  }
+
+  function debouncedProcess() {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(process, 150);
+  }
+
+  function clearStatus() {
+    statusEl.innerHTML = '';
+    statusEl.className = 'encoder-status';
+  }
+
+  function showError(msg) {
+    statusEl.innerHTML = '<i class="fas fa-exclamation-triangle"></i> ' + escapeHtml(msg);
+    statusEl.className = 'encoder-status status-error';
+  }
+
+  function showSuccess(msg) {
+    statusEl.innerHTML = '<i class="fas fa-check"></i> ' + escapeHtml(msg);
+    statusEl.className = 'encoder-status status-success';
+    setTimeout(clearStatus, 2000);
+  }
+
+  function escapeHtml(s) {
+    var d = document.createElement('div');
+    d.appendChild(document.createTextNode(s));
+    return d.innerHTML;
+  }
+
+  /* ===== Event Listeners ===== */
+
+  inputEl.addEventListener('input', debouncedProcess);
+  formatEl.addEventListener('change', process);
+
+  modeBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      modeBtns.forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      currentMode = btn.getAttribute('data-mode');
+      process();
+    });
+  });
+
+  document.getElementById('btn-clear').addEventListener('click', function() {
+    inputEl.value = '';
+    outputEl.value = '';
+    inputCount.textContent = '0 chars';
+    outputCount.textContent = '0 chars';
+    clearStatus();
+    inputEl.focus();
+  });
+
+  document.getElementById('btn-copy').addEventListener('click', function() {
+    var text = outputEl.value;
+    if (!text) return;
+    navigator.clipboard.writeText(text).then(function() {
+      showSuccess('Copied to clipboard');
+    }).catch(function() {
+      outputEl.select();
+      document.execCommand('copy');
+      showSuccess('Copied to clipboard');
+    });
+  });
+
+  document.getElementById('btn-swap').addEventListener('click', function() {
+    var temp = inputEl.value;
+    inputEl.value = outputEl.value;
+    outputEl.value = temp;
+    process();
+  });
+
+})();
+</script>

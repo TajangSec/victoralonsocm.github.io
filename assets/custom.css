@@ -5,7 +5,7 @@
 */
 
 /* ===== Fonts ===== */
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&family=IBM+Plex+Mono:wght@300;400;500;700&family=Share+Tech+Mono&display=swap');
+/* Loaded via <link> in metadata-hook.html for render performance */
 
 /* ===== Color Palette - Chirpy Variable Overrides ===== */
 html[data-mode=dark],
@@ -78,7 +78,7 @@ html[data-mode=dark],
 
   --tag-border:          var(--retro-border);
   --tag-shadow:          var(--retro-bg-deep);
-  --tag-hover:           var(--retro-bg-elevated);
+  --tag-hover:           rgba(168, 85, 247, 0.15);
   --search-tag-bg:       var(--retro-bg-surface);
 
   --categories-border:   var(--retro-border);
@@ -135,6 +135,7 @@ html, body {
   line-height: 1.7;
   background: var(--retro-bg) !important;
   color: var(--retro-text) !important;
+  color-scheme: dark;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -143,6 +144,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 500 !important;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  text-wrap: balance;
 }
 
 .site-title {
@@ -157,6 +159,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'JetBrains Mono', monospace !important;
   color: var(--retro-text-dim) !important;
   font-size: 0.8rem !important;
+  user-select: text !important;
 }
 
 .nav-link span {
@@ -466,6 +469,7 @@ article.px-1 {
 .post-meta {
   color: var(--retro-text-dim) !important;
   font-size: 0.8rem !important;
+  font-variant-numeric: tabular-nums;
 }
 
 .card-body {
@@ -810,15 +814,36 @@ blockquote[class^="prompt-"] {
   font-family: 'JetBrains Mono', monospace !important;
   font-size: 0.85rem !important;
   letter-spacing: 0.03em;
-  transition: all 0.2s !important;
+  transition: background 0.2s, border-color 0.2s, box-shadow 0.2s, color 0.2s !important;
 }
-.tag:hover, .badge:hover {
-  background: rgba(168, 85, 247, 0.1) !important;
-  box-shadow: 0 0 8px rgba(168, 85, 247, 0.2) !important;
+/* All tags: same hover as Trending Tags */
+a.tag:hover,
+.tag:hover,
+.badge:hover,
+.post-tag:hover,
+.post-tags .post-tag:hover,
+#tags .tag:hover {
+  background: rgba(168, 85, 247, 0.15) !important;
+  border-color: var(--retro-purple) !important;
+  box-shadow: 0 0 10px rgba(168, 85, 247, 0.3) !important;
+  color: #c084fc !important;
+  text-decoration: none !important;
+}
+
+#tags .tag {
+  line-height: 1.6 !important;
+  box-shadow: none !important;
+}
+
+#tags .tag span {
+  color: var(--retro-text-dim) !important;
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: 0.75em !important;
+  font-variant-numeric: tabular-nums;
 }
 
 /* ===== Buttons & Inputs ===== */
-button, .btn, input, textarea, select {
+button, .btn:not(.post-tag), input, textarea, select {
   background: var(--retro-bg-surface) !important;
   color: var(--retro-text) !important;
   border: 1px solid var(--retro-border) !important;
@@ -827,7 +852,7 @@ button, .btn, input, textarea, select {
   box-shadow: none !important;
   transition: border-color 0.2s, box-shadow 0.2s !important;
 }
-button:hover, .btn:hover {
+button:hover, .btn:not(.post-tag):hover {
   border-color: var(--retro-green-dim) !important;
   box-shadow: 0 0 8px var(--retro-green-glow) !important;
 }
@@ -931,36 +956,31 @@ div[class^='language-'] .highlight::-webkit-scrollbar-thumb {
 }
 
 /* ===== Accessibility - Focus States ===== */
-a:focus, button:focus, input:focus, textarea:focus {
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
   outline: 1px solid var(--retro-green-dim) !important;
   outline-offset: 0 !important;
   box-shadow: none !important;
 }
 
 /* Sidebar nav links — subtle click highlight */
-#sidebar a:focus,
-#sidebar a:active,
-#sidebar .nav-link:focus,
-#sidebar .nav-link:active {
+#sidebar a:focus-visible,
+#sidebar .nav-link:focus-visible {
   outline: 1px solid var(--retro-green-dim) !important;
   outline-offset: 0 !important;
   box-shadow: none !important;
 }
 
 /* Right panel links — subtle click highlight */
-#panel-wrapper a:focus,
-#panel-wrapper a:active,
-#panel-wrapper .btn:focus,
-#panel-wrapper .btn:active {
+#panel-wrapper a:focus-visible,
+#panel-wrapper .btn:focus-visible {
   outline: none !important;
   box-shadow: inset 0 0 0 1px var(--retro-green-dim) !important;
-  padding: 0.2rem !important;
 }
 
 /* No focus/active outline glow on post card links */
-#post-list article.card-wrapper a.post-preview:focus,
+#post-list article.card-wrapper a.post-preview:focus-visible,
 #post-list article.card-wrapper a.post-preview:active,
-#post-list article.card-wrapper a.post-preview:focus-visible {
+#post-list article.card-wrapper a.post-preview:focus {
   outline: none !important;
   outline-offset: 0 !important;
   box-shadow: none !important;
@@ -983,7 +1003,7 @@ a:focus, button:focus, input:focus, textarea:focus {
   font-family: 'JetBrains Mono', monospace !important;
   min-width: 0 !important;
   padding-left: 0.75rem !important;
-  padding-right: 0 !important;
+  padding-right: 0.75rem !important;
   margin-top: 0 !important;
   padding-top: 0 !important;
 }
@@ -992,8 +1012,8 @@ a:focus, button:focus, input:focus, textarea:focus {
 #panel-wrapper #toc-wrapper,
 #panel-wrapper .toc-wrap {
   position: sticky !important;
-  top: 5rem !important;
-  max-height: calc(100vh - 6rem) !important;
+  top: 2.75rem !important;
+  max-height: calc(100vh - 3.75rem) !important;
   margin-top: 0 !important;
   overflow-y: auto !important;
   overflow-x: hidden !important;
@@ -1079,10 +1099,18 @@ a:focus, button:focus, input:focus, textarea:focus {
   padding-left: 0 !important;
 }
 
+#access-lastmod ul li {
+  overflow: visible !important;
+}
+
 #access-lastmod ul li a {
   color: var(--retro-text-dim) !important;
-  font-size: 0.8rem !important;
+  font-size: 0.9rem !important;
   transition: color 0.2s !important;
+  display: block !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  padding: 0.2rem !important;
 }
 #access-lastmod ul li a:hover {
   color: var(--retro-green) !important;
@@ -1098,7 +1126,7 @@ a:focus, button:focus, input:focus, textarea:focus {
   font-family: 'JetBrains Mono', monospace !important;
   font-size: 0.85rem !important;
   padding: 0.2rem 0.5rem !important;
-  transition: all 0.2s !important;
+  transition: background 0.2s, border-color 0.2s, box-shadow 0.2s, color 0.2s !important;
 }
 #panel-wrapper .access .post-tag:hover,
 #panel-wrapper .access .btn.btn-outline-primary:hover {
@@ -1223,17 +1251,146 @@ a:focus, button:focus, input:focus, textarea:focus {
     margin-right: 0 !important;
   }
 
-  /* Topbar */
   #topbar-wrapper {
-    height: auto !important;
-    min-height: auto !important;
-    padding-top: 0.5rem !important;
-    padding-bottom: 0.5rem !important;
+    background: var(--retro-bg) !important;
+    z-index: 5 !important;
+  }
+
+  #topbar-wrapper::before {
+    display: none !important;
   }
 
   #topbar #breadcrumb {
     font-size: 0.9rem !important;
   }
+}
+
+/* ===== Mobile TOC Bar (post title + Contents button on mobile) ===== */
+#toc-bar {
+  background: var(--retro-bg) !important;
+  border-bottom: 1px solid var(--retro-border) !important;
+  z-index: 10 !important;
+  gap: 0.2rem !important;
+}
+
+#toc-bar.invisible {
+  visibility: hidden !important;
+  opacity: 0 !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  overflow: hidden !important;
+}
+
+#toc-bar .label {
+  font-family: 'Share Tech Mono', monospace !important;
+  color: var(--retro-green) !important;
+}
+
+#toc-bar button {
+  color: var(--retro-text-dim) !important;
+  border: 1px solid var(--retro-border) !important;
+  padding: 0.2rem 0.5rem !important;
+  margin: 0 !important;
+}
+
+#toc-solo-trigger {
+  font-family: 'JetBrains Mono', monospace !important;
+  color: var(--retro-text-dim) !important;
+  border-color: var(--retro-border) !important;
+  margin-top: 2rem !important;
+}
+
+#toc-solo-trigger .label {
+  font-family: 'JetBrains Mono', monospace !important;
+}
+
+/* TOC popup dialog (mobile Contents menu) */
+#toc-popup {
+  background: var(--retro-bg) !important;
+  border: 1px solid var(--retro-border) !important;
+  border-radius: 4px !important;
+  color: var(--retro-text) !important;
+  font-family: 'JetBrains Mono', monospace !important;
+  overscroll-behavior: contain;
+}
+
+#toc-popup .header {
+  background: var(--retro-bg) !important;
+  border-bottom: 1px solid var(--retro-border) !important;
+}
+
+#toc-popup .header .label {
+  font-family: 'Share Tech Mono', monospace !important;
+  color: var(--retro-green) !important;
+}
+
+#toc-popup .header button {
+  color: var(--retro-text-dim) !important;
+  border: 1px solid var(--retro-border) !important;
+  padding: 0.2rem 0.5rem !important;
+  margin: 0.25rem !important;
+}
+
+#toc-popup #toc-popup-content {
+  font-family: 'JetBrains Mono', monospace !important;
+}
+
+dialog#toc-popup a.toc-link,
+dialog#toc-popup a {
+  color: var(--retro-cyan) !important;
+  text-decoration: none !important;
+  text-shadow: none !important;
+  padding-left: 1rem !important;
+  border-left: 2px solid transparent !important;
+  font-size: 0.85rem !important;
+  line-height: 1.25 !important;
+  transition: color 0.2s !important;
+}
+
+dialog#toc-popup a.toc-link::before {
+  display: none !important;
+}
+
+dialog#toc-popup a.toc-link:hover,
+dialog#toc-popup a:hover {
+  color: var(--retro-green) !important;
+  text-shadow: 0 0 5px var(--retro-green-glow) !important;
+  text-decoration: none !important;
+}
+
+dialog#toc-popup .is-active-link,
+dialog#toc-popup a.is-active-link {
+  color: var(--retro-green) !important;
+  border-left: 2px solid var(--retro-green) !important;
+  text-shadow: 0 0 5px var(--retro-green-glow) !important;
+  font-weight: 600 !important;
+}
+
+dialog#toc-popup .is-active-link::before {
+  display: none !important;
+}
+
+dialog#toc-popup ul {
+  padding-left: 0 !important;
+}
+
+dialog#toc-popup ul ul {
+  padding-left: 0.75rem !important;
+  border-left: 1px solid var(--retro-border) !important;
+  margin-left: 0.5rem !important;
+}
+
+#toc-popup::after {
+  background: linear-gradient(transparent, var(--retro-bg) 70%) !important;
+}
+
+#toc-popup::backdrop {
+  background: rgba(10, 10, 15, 0.5) !important;
+  backdrop-filter: blur(5px) !important;
+  -webkit-backdrop-filter: blur(5px) !important;
 }
 
 /* Mobile */
@@ -1453,9 +1610,9 @@ a:focus, button:focus, input:focus, textarea:focus {
     margin-right: 0 !important;
   }
 
-  /* Prevent horizontal overflow but allow card borders to show */
+  /* Prevent horizontal overflow without breaking sticky positioning */
   body, html {
-    overflow-x: hidden !important;
+    overflow-x: clip !important;
   }
 
   .main-content, .container {
@@ -1500,9 +1657,56 @@ a:focus, button:focus, input:focus, textarea:focus {
   }
 }
 
+/* ===== PWA Update Notification ===== */
+#notification.toast.show {
+  background-color: var(--retro-bg-surface) !important;
+  color: var(--retro-text) !important;
+  border: 1px solid var(--retro-border) !important;
+  border-radius: 4px !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5), 0 0 0 1px var(--retro-border) !important;
+}
+
+#notification .toast-header {
+  background: var(--retro-bg-elevated) !important;
+  border-bottom: 1px solid var(--retro-border) !important;
+  color: var(--retro-text) !important;
+}
+
+#notification .toast-header .btn-close {
+  filter: invert(1) !important;
+}
+
+#notification .toast-body {
+  font-family: 'JetBrains Mono', monospace !important;
+  color: var(--retro-text) !important;
+}
+
+#notification .toast-body p {
+  color: var(--retro-text) !important;
+}
+
+#notification .toast-body .btn-primary {
+  background: transparent !important;
+  color: var(--retro-green) !important;
+  border: 1px solid var(--retro-green) !important;
+  border-radius: 3px !important;
+  font-family: 'JetBrains Mono', monospace !important;
+  transition: background 0.2s, box-shadow 0.2s !important;
+}
+
+#notification .toast-body .btn-primary:hover {
+  background: rgba(0, 255, 65, 0.1) !important;
+  box-shadow: 0 0 10px var(--retro-green-glow) !important;
+}
+
 /* ===== Reduced Motion ===== */
 @media (prefers-reduced-motion: reduce) {
   .site-title::after {
+    animation: none !important;
+  }
+  #sidebar #avatar img {
     animation: none !important;
   }
   body::after, body::before {
