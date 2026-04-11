@@ -11,11 +11,11 @@ layout:
 tabs:
   # format: <filename_without_extension>: <value>
   home: Home
+  categories: Topics
+  tags: Tags
   archives: Posts
   tools: Tools
   about: Whoami
-  categories: Topics
-  tags: Tags
 
 # the text displayed in the search bar & search results
 search:
