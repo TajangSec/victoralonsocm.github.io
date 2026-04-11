@@ -21,6 +21,10 @@ image:
 
 We are still here...
 
+## Hi
+
+I'm Victor Contreras (aka EvilMachine), a `Telematics Engineer` with knowledge in computer architecture (x86, x64), software development (C/C++, Java, C#, JavaScript, Python), cybersecurity (Product Security Testing, Penetration Testing, Vulnerability Analysis, Reverse Engineering, Exploit Development, Malware Analysis, Threat Analysis) and computer networks (CISCO Routing and Switching). More than eight years of experience across multiple cybersecurity domains.
+
 ## **Fields of Action, Known Technologies, and Others**
 
 ### **Reverse Engineering**
