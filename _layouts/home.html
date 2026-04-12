@@ -26,8 +26,8 @@ normal_size > 0 %} {% if pinned_size > 0 %} {% assign normal_start = 0 %} {%
 else %} {% assign normal_start = visible_start | minus: all_pinned.size %} {%
 endif %} {% assign normal_end = normal_start | plus: normal_size | minus: 1 %}
 {% for i in (normal_start..normal_end) %} {% assign normal_posts = normal_posts
-| push: all_normal[i] %} {% endfor %} {% endif %}
-
+| push: all_normal[i] %} {% endfor %} {% endif %} --- layout: default refactor:
+true ---
 <div id="post-list" class="flex-grow-1 px-xl-1">
   <!-- ===== Pinned Posts Section ===== -->
   {% if pinned_posts.size > 0 %}
@@ -65,7 +65,7 @@ endif %} {% assign normal_end = normal_start | plus: normal_size | minus: 1 %}
             <h1 class="card-title my-2 mt-md-0">{{ post.title }}</h1>
 
             <div class="card-text content mt-0 mb-3">
-              <p>{% include post-description %}</p>
+              <p>{% include post-description.html %}</p>
             </div>
 
             <div class="post-meta flex-grow-1 d-flex align-items-end">
@@ -131,7 +131,7 @@ endif %} {% assign normal_end = normal_start | plus: normal_size | minus: 1 %}
           <h1 class="card-title my-2 mt-md-0">{{ post.title }}</h1>
 
           <div class="card-text content mt-0 mb-3">
-            <p>{% include post-description %}</p>
+            <p>{% include post-description.html %}</p>
           </div>
 
           <div class="post-meta flex-grow-1 d-flex align-items-end">
