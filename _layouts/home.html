@@ -40,7 +40,7 @@ endif %} {% assign normal_end = normal_start | plus: normal_size | minus: 1 %}
       <p class="pinned-desc">Hand-picked reads &mdash; start here.</p>
     </div>
 
-    {% for post in pinned_posts.super %}
+    {% for post in pinned_posts %}
     <article class="card-wrapper card pinned-card">
       <a
         href="{{ post.url | relative_url }}"
@@ -65,7 +65,7 @@ endif %} {% assign normal_end = normal_start | plus: normal_size | minus: 1 %}
             <h1 class="card-title my-2 mt-md-0">{{ post.title }}</h1>
 
             <div class="card-text content mt-0 mb-3">
-              <p>{% include post-description.html %}</p>
+              <p>{{ post.description }}</p>
             </div>
 
             <div class="post-meta flex-grow-1 d-flex align-items-end">
