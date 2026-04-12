@@ -79,7 +79,7 @@ title: Text Encoder / Decoder
 
 .mode-btn:first-child {
   border-radius: 3px 0 0 3px !important;
-  border-right: none !important;
+  margin-right: -1px;
 }
 
 .mode-btn:last-child {
@@ -91,13 +91,19 @@ title: Text Encoder / Decoder
   border-color: var(--retro-green) !important;
   box-shadow: 0 0 8px var(--retro-green-glow) !important;
   background: rgba(0, 255, 65, 0.06) !important;
-  z-index: 1;
+  z-index: 2;
   position: relative;
 }
 
 .mode-btn:hover:not(.active) {
   border-color: var(--retro-green-dim) !important;
   color: var(--retro-text) !important;
+}
+
+.mode-btn:focus-visible {
+  border-color: var(--retro-green-dim) !important;
+  box-shadow: 0 0 8px var(--retro-green-glow) !important;
+  outline: none;
 }
 
 /* ===== Action Buttons ===== */
@@ -117,6 +123,12 @@ title: Text Encoder / Decoder
   border-color: var(--retro-green-dim) !important;
   color: var(--retro-green) !important;
   box-shadow: 0 0 8px var(--retro-green-glow) !important;
+}
+
+.action-btn:focus-visible {
+  border-color: var(--retro-green-dim) !important;
+  box-shadow: 0 0 8px var(--retro-green-glow) !important;
+  outline: none;
 }
 
 .controls-right {
@@ -171,9 +183,13 @@ title: Text Encoder / Decoder
   box-shadow: none !important;
 }
 
-.encoder-textarea:focus {
+.encoder-textarea:focus-visible {
   border-color: var(--retro-green-dim) !important;
   box-shadow: 0 0 8px var(--retro-green-glow) !important;
+  outline: none;
+}
+
+.encoder-textarea:focus:not(:focus-visible) {
   outline: none;
 }
 
@@ -185,6 +201,17 @@ title: Text Encoder / Decoder
 .encoder-textarea[readonly] {
   color: var(--retro-cyan) !important;
   cursor: default;
+}
+
+.encoder-textarea {
+  scrollbar-color: #ff3b2e var(--retro-bg-elevated);
+  scrollbar-width: thin;
+}
+
+/* Touch */
+.mode-btn, .action-btn, .format-select {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* ===== Status Bar ===== */
@@ -218,6 +245,54 @@ title: Text Encoder / Decoder
   text-align: right;
   margin-top: 0.25rem;
   font-variant-numeric: tabular-nums;
+}
+
+/* ===== Fire Button ===== */
+.fire-btn-wrap {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.75rem;
+}
+
+.fire-btn {
+  font-family: 'Share Tech Mono', monospace !important;
+  font-size: 0.9rem !important;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding: 0.5rem 1.5rem !important;
+  background: rgba(255, 40, 20, 0.12) !important;
+  color: #ff3b2e !important;
+  border: 1px solid #ff3b2e !important;
+  border-radius: 3px !important;
+  cursor: pointer;
+  position: relative;
+  transition: box-shadow 0.2s, background 0.2s, text-shadow 0.2s !important;
+  box-shadow: 0 0 8px rgba(255, 40, 20, 0.25), inset 0 0 8px rgba(255, 40, 20, 0.06) !important;
+  text-shadow: 0 0 6px rgba(255, 40, 20, 0.5);
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.fire-btn:hover {
+  background: rgba(255, 40, 20, 0.2) !important;
+  box-shadow: 0 0 18px rgba(255, 40, 20, 0.45), 0 0 4px rgba(255, 120, 20, 0.3), inset 0 0 12px rgba(255, 40, 20, 0.1) !important;
+  text-shadow: 0 0 10px rgba(255, 40, 20, 0.7);
+}
+
+.fire-btn:active {
+  background: rgba(255, 40, 20, 0.3) !important;
+  box-shadow: 0 0 24px rgba(255, 40, 20, 0.6), 0 0 6px rgba(255, 160, 20, 0.4), inset 0 0 16px rgba(255, 40, 20, 0.15) !important;
+}
+
+.fire-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 18px rgba(255, 40, 20, 0.45), 0 0 0 2px rgba(255, 40, 20, 0.5) !important;
+}
+
+.fire-btn i {
+  margin-right: 0.4rem;
+  color: #ff6a2e;
 }
 
 /* ===== Responsive ===== */
@@ -276,9 +351,9 @@ title: Text Encoder / Decoder
   <!-- Controls -->
   <div class="encoder-controls">
     <label for="format-select">Format</label>
-    <select id="format-select" class="format-select" aria-label="Encoding format">
+    <select id="format-select" class="format-select">
+      <option value="url">URL Encoding</option>
       <option value="base64">Base64</option>
-      <option value="url" selected>URL Encoding</option>
       <option value="html-entity">HTML Entities</option>
       <option value="hex">Hex (0x41)</option>
       <option value="ascii-hex">ASCII Hex (41)</option>
@@ -311,15 +386,22 @@ title: Text Encoder / Decoder
   <!-- Panels -->
   <div class="encoder-panels">
     <div class="encoder-panel">
-      <div class="panel-label"><i class="fas fa-chevron-right"></i> Input</div>
-      <textarea id="encoder-input" class="encoder-textarea" placeholder="Enter text to encode or decode..." spellcheck="false" autocomplete="off"></textarea>
+      <label class="panel-label" for="encoder-input"><i class="fas fa-chevron-right"></i> Input</label>
+      <textarea id="encoder-input" name="encoder-input" class="encoder-textarea" placeholder="Enter text to encode or decode&hellip;" spellcheck="false" autocomplete="off"></textarea>
       <div class="char-count" id="input-count">0 chars</div>
     </div>
     <div class="encoder-panel">
-      <div class="panel-label"><i class="fas fa-chevron-right"></i> Output</div>
-      <textarea id="encoder-output" class="encoder-textarea" readonly placeholder="Result will appear here..."></textarea>
+      <label class="panel-label" for="encoder-output"><i class="fas fa-chevron-right"></i> Output</label>
+      <textarea id="encoder-output" name="encoder-output" class="encoder-textarea" readonly placeholder="Result will appear here&hellip;" spellcheck="false"></textarea>
       <div class="char-count" id="output-count">0 chars</div>
     </div>
+  </div>
+
+  <!-- Fire Button -->
+  <div class="fire-btn-wrap">
+    <button type="button" class="fire-btn" id="btn-fire">
+      <i class="fas fa-fire"></i> Execute
+    </button>
   </div>
 
   <!-- Status -->
@@ -338,8 +420,6 @@ title: Text Encoder / Decoder
   var outputCount = document.getElementById('output-count');
   var modeBtns = document.querySelectorAll('.mode-btn');
   var currentMode = 'encode';
-  var debounceTimer = null;
-
   /* ===== Codec Functions ===== */
 
   function urlEncode(t) { return encodeURIComponent(t); }
@@ -555,11 +635,6 @@ title: Text Encoder / Decoder
     }
   }
 
-  function debouncedProcess() {
-    clearTimeout(debounceTimer);
-    debounceTimer = setTimeout(process, 150);
-  }
-
   function clearStatus() {
     statusEl.innerHTML = '';
     statusEl.className = 'encoder-status';
@@ -584,17 +659,15 @@ title: Text Encoder / Decoder
 
   /* ===== Event Listeners ===== */
 
-  inputEl.addEventListener('input', debouncedProcess);
-  formatEl.addEventListener('change', process);
-
   modeBtns.forEach(function(btn) {
     btn.addEventListener('click', function() {
       modeBtns.forEach(function(b) { b.classList.remove('active'); });
       btn.classList.add('active');
       currentMode = btn.getAttribute('data-mode');
-      process();
     });
   });
+
+  document.getElementById('btn-fire').addEventListener('click', process);
 
   document.getElementById('btn-clear').addEventListener('click', function() {
     inputEl.value = '';
@@ -621,8 +694,21 @@ title: Text Encoder / Decoder
     var temp = inputEl.value;
     inputEl.value = outputEl.value;
     outputEl.value = temp;
+    currentMode = currentMode === 'encode' ? 'decode' : 'encode';
+    modeBtns.forEach(function(b) {
+      b.classList.toggle('active', b.getAttribute('data-mode') === currentMode);
+    });
     process();
   });
+
+  /* ===== Sidebar: keep Tools tab active on tool subpages ===== */
+  var toolsLink = document.querySelector('#sidebar a.nav-link[href*="/tools/"]');
+  if (toolsLink) {
+    var li = toolsLink.closest('li.nav-item');
+    if (li && !li.classList.contains('active')) {
+      li.classList.add('active');
+    }
+  }
 
 })();
 </script>

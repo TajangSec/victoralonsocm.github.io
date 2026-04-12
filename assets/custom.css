@@ -408,6 +408,126 @@ article.px-1 {
   margin-top: 1.5rem !important;
 }
 
+/* ===== Pinned Section ===== */
+.pinned-header {
+  margin-bottom: 1rem;
+}
+
+.pinned-title {
+  font-family: 'Share Tech Mono', monospace;
+  color: var(--retro-green) !important;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pinned-title i {
+  color: var(--retro-green-dim);
+  font-size: 0.85rem;
+}
+
+.pinned-desc {
+  color: var(--retro-text-dim) !important;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  margin: 0.3rem 0 0 0;
+  font-style: italic;
+}
+
+/* Pinned cards — compact */
+#post-list article.card-wrapper.pinned-card {
+  margin-bottom: 0.5rem !important;
+}
+
+#post-list article.card-wrapper.pinned-card .card-body {
+  padding: 0.5rem 0.75rem !important;
+}
+
+#post-list article.card-wrapper.pinned-card .card-title {
+  font-size: 1rem !important;
+  margin-top: 0.25rem !important;
+  margin-bottom: 0.15rem !important;
+}
+
+#post-list article.card-wrapper.pinned-card .card-text {
+  font-size: 0.8rem !important;
+  margin-bottom: 0.25rem !important;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+#post-list article.card-wrapper.pinned-card .post-meta {
+  font-size: 0.75rem !important;
+}
+
+#post-list article.card-wrapper.pinned-card::before {
+  padding: 2px 8px !important;
+  font-size: 0.6rem !important;
+}
+
+#post-list article.card-wrapper.pinned-card .post-preview {
+  flex-direction: row-reverse !important;
+}
+
+#post-list article.card-wrapper.pinned-card .col-md-5 {
+  flex: 0 0 100px !important;
+  max-width: 100px !important;
+  width: 100px !important;
+  line-height: 0 !important;
+  overflow: hidden !important;
+}
+
+#post-list article.card-wrapper.pinned-card .col-md-7,
+#post-list article.card-wrapper.pinned-card .col-md-12 {
+  flex: 1 !important;
+  max-width: none !important;
+  width: auto !important;
+}
+
+#post-list article.card-wrapper.pinned-card .col-md-5 .preview-img {
+  aspect-ratio: unset !important;
+  height: 100% !important;
+  line-height: 0 !important;
+  font-size: 0 !important;
+}
+
+#post-list article.card-wrapper.pinned-card .col-md-5 img {
+  object-fit: cover !important;
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Divider between pinned and normal posts */
+.posts-divider {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 1.5rem 0;
+}
+
+.posts-divider::before,
+.posts-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--retro-border);
+}
+
+.divider-label {
+  font-family: 'Share Tech Mono', monospace;
+  color: var(--retro-text-dim);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+}
+
 /* ===== Post Cards ===== */
 #post-list article.card-wrapper {
   background: var(--retro-bg-surface) !important;
@@ -919,7 +1039,7 @@ img:not(.preview-img), .post img:not(.preview-img) {
 
 /* ===== Scrollbar ===== */
 * {
-  scrollbar-color: var(--retro-border) var(--retro-bg-deep);
+  scrollbar-color: #ff3b2e var(--retro-bg-deep);
   scrollbar-width: thin;
 }
 
@@ -931,17 +1051,17 @@ img:not(.preview-img), .post img:not(.preview-img) {
   background: var(--retro-bg-deep);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--retro-border);
+  background: #ff3b2e;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--retro-green-dim);
+  background: #ff5c50;
 }
 
-/* Code block scrollbar — green tint */
+/* Code block scrollbar — red retro */
 .highlight,
 div[class^='language-'] .highlight {
-  scrollbar-color: var(--retro-green-dim) var(--highlight-bg-color);
+  scrollbar-color: #ff3b2e var(--highlight-bg-color);
 }
 
 .highlight::-webkit-scrollbar-track,
@@ -951,7 +1071,7 @@ div[class^='language-'] .highlight::-webkit-scrollbar-track {
 
 .highlight::-webkit-scrollbar-thumb,
 div[class^='language-'] .highlight::-webkit-scrollbar-thumb {
-  background: var(--retro-green-dim);
+  background: #ff3b2e;
   border-radius: 4px;
 }
 
@@ -1421,6 +1541,72 @@ dialog#toc-popup ul ul {
   h2 { font-size: 1.2rem !important; }
   h3 { font-size: 1.05rem !important; }
 
+  /* Pinned cards — mobile */
+  #post-list article.card-wrapper.pinned-card .card-title {
+    font-size: 0.9rem !important;
+  }
+
+  #post-list article.card-wrapper.pinned-card .post-preview {
+    flex-direction: row-reverse !important;
+    flex-wrap: nowrap !important;
+    align-items: stretch !important;
+  }
+
+  #post-list article.card-wrapper.pinned-card .col-md-5 {
+    flex: 0 0 80px !important;
+    max-width: 80px !important;
+    width: 80px !important;
+    min-width: 80px !important;
+    line-height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+  }
+
+  #post-list article.card-wrapper.pinned-card .col-md-5 .preview-img {
+    aspect-ratio: unset !important;
+    height: 100% !important;
+    line-height: 0 !important;
+    font-size: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  #post-list article.card-wrapper.pinned-card .col-md-5 img {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-height: none !important;
+    object-fit: cover !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  #post-list article.card-wrapper.pinned-card .col-md-7 {
+    flex: 1 1 0% !important;
+    max-width: none !important;
+    width: auto !important;
+    min-width: 0 !important;
+  }
+
+  #post-list article.card-wrapper.pinned-card .card-body {
+    padding: 0.3rem 0.6rem !important;
+  }
+
+  #post-list article.card-wrapper.pinned-card .card-title {
+    margin: 0 0 0.1rem 0 !important;
+    padding: 0 !important;
+  }
+
+  #post-list article.card-wrapper.pinned-card .card-text {
+    margin-top: 0.1rem !important;
+    margin-bottom: 0.15rem !important;
+  }
+
+  .posts-divider {
+    margin: 1rem 0;
+  }
+
   /* Post cards stack vertically */
   #post-list {
     padding-left: 0 !important;
@@ -1482,6 +1668,7 @@ dialog#toc-popup ul ul {
     flex-direction: column !important;
     margin: 0 !important;
     padding: 0 !important;
+    gap: 0 !important;
   }
 
   #post-list article.card-wrapper .col-md-5,
@@ -1493,7 +1680,19 @@ dialog#toc-popup ul ul {
     padding-right: 0 !important;
   }
 
+  #post-list article.card-wrapper .col-md-5 {
+    line-height: 0 !important;
+  }
+
+  #post-list article.card-wrapper .col-md-5 .preview-img {
+    aspect-ratio: unset !important;
+    line-height: 0 !important;
+    font-size: 0 !important;
+    height: auto !important;
+  }
+
   #post-list article.card-wrapper .col-md-5 img {
+    display: block !important;
     max-height: 180px !important;
     width: 100% !important;
     object-fit: cover !important;
