@@ -1102,10 +1102,25 @@ img:not(.preview-img), .post img:not(.preview-img) {
 }
 
 /* ===== Footer ===== */
+#core-wrapper footer,
 .site-footer, .copyright {
   color: var(--retro-text-dim) !important;
   font-size: 0.8rem !important;
   font-family: 'JetBrains Mono', monospace !important;
+}
+
+#core-wrapper footer p,
+#core-wrapper footer a,
+#core-wrapper footer span,
+#core-wrapper footer em,
+#core-wrapper footer time {
+  color: var(--retro-text-dim) !important;
+}
+
+#core-wrapper footer a:hover,
+#core-wrapper footer a:focus-visible {
+  color: var(--retro-green) !important;
+  text-decoration: underline !important;
 }
 
 /* ===== Sidebar bottom (mode toggle + social icons) — centered ===== */
