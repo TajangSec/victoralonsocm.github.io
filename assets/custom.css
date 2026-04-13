@@ -1429,12 +1429,19 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   max-height: none !important;
   line-height: 1.25 !important;
   margin: 0 0 0.5rem 0 !important;
+  color: var(--retro-green) !important;
 }
 
 #post-list article.card-wrapper .post-title a,
 #post-list article.card-wrapper .card-title a {
   white-space: normal !important;
   display: inline !important;
+  color: var(--retro-green) !important;
+}
+
+#post-list article.card-wrapper a.post-preview .card-body .card-title,
+#post-list article.card-wrapper a.post-preview h1.card-title {
+  color: var(--retro-green) !important;
 }
 
 /* ===== Responsive ===== */
