@@ -706,6 +706,67 @@ li,
   line-height: 1.7;
 }
 
+/* ===== Archives / Posts Index =====
+   Overrides Chirpy's gem _archives.scss which ships with a white zebra
+   gradient on odd rows, Lato on date numerals, and hardcoded cool-gray
+   shadows — all of which fight the retro identity in both modes. */
+#archives {
+  letter-spacing: 0 !important;
+  font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace !important;
+}
+
+#archives .year {
+  font-family: 'Share Tech Mono', 'JetBrains Mono', monospace !important;
+  color: var(--retro-green) !important;
+  font-size: 1.4rem !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase;
+}
+
+#archives ul li {
+  font-family: 'JetBrains Mono', monospace !important;
+  color: var(--retro-text) !important;
+  font-size: 0.95rem !important;
+}
+
+#archives ul li:nth-child(odd),
+#archives ul li:nth-child(even) {
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+#archives .date.day {
+  font-family: 'JetBrains Mono', monospace !important;
+  font-variant-numeric: tabular-nums;
+  color: var(--retro-text-bright) !important;
+  font-size: 0.85rem !important;
+}
+
+#archives .date.month {
+  color: var(--retro-text-dim) !important;
+  font-family: 'JetBrains Mono', monospace !important;
+  font-variant-numeric: tabular-nums;
+}
+
+#archives .year::after,
+#archives ul li a::before {
+  box-shadow: 0 0 6px var(--retro-green-glow) !important;
+  background-color: var(--retro-green) !important;
+  border-color: var(--retro-green-dim) !important;
+}
+
+#archives a {
+  color: var(--retro-text) !important;
+  transition: color 0.15s !important;
+}
+
+#archives a:hover,
+#archives a:focus-visible {
+  color: var(--retro-cyan) !important;
+  border-bottom: none !important;
+  text-decoration: none !important;
+}
+
 /* ===== Code Blocks ===== */
 
 /* Outer wrapper: div[class^=language-] */
@@ -1115,6 +1176,18 @@ body footer[aria-label="Site Info"] span,
 body footer[aria-label="Site Info"] em,
 body footer[aria-label="Site Info"] time {
   color: var(--retro-text-dim) !important;
+}
+
+body footer[aria-label="Site Info"] a {
+  color: var(--retro-cyan) !important;
+  border-bottom: none !important;
+}
+
+body footer[aria-label="Site Info"] a:hover,
+body footer[aria-label="Site Info"] a:focus-visible {
+  color: var(--retro-cyan-dim) !important;
+  border-bottom: 1px solid var(--retro-cyan-dim) !important;
+  text-decoration: none !important;
 }
 
 /* ===== Sidebar bottom (mode toggle + social icons) — centered ===== */
