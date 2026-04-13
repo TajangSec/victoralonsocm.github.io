@@ -3,4 +3,37 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&family=IBM+Plex+Mono:wght@300;400;500;700&family=Share+Tech+Mono&display=swap">
 <link rel="stylesheet" href="/assets/custom.css">
-<meta name="theme-color" content="#0a0a0f">
+<meta name="theme-color" content="#13131f" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f3ecd8" media="(prefers-color-scheme: light)">
+
+<script>
+  // Force dark as the site default on first visit of a session.
+  (function () {
+    try {
+      if (!sessionStorage.getItem('mode') && !document.documentElement.getAttribute('data-mode')) {
+        document.documentElement.setAttribute('data-mode', 'dark');
+        sessionStorage.setItem('mode', 'dark');
+      }
+    } catch (e) {}
+  })();
+
+  // Chirpy's native toggle cycles dark → follow-system → light → follow-system,
+  // which means first click often appears to do nothing (e.g. stored-dark
+  // reverts to system-dark). Replace it with a direct dark ↔ light toggle.
+  document.addEventListener('DOMContentLoaded', function () {
+    var original = document.getElementById('mode-toggle');
+    if (!original) return;
+    var btn = original.cloneNode(true);
+    original.parentNode.replaceChild(btn, original);
+    btn.addEventListener('click', function () {
+      var html = document.documentElement;
+      var current = html.getAttribute('data-mode') === 'light' ? 'light' : 'dark';
+      var next = current === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-mode', next);
+      try { sessionStorage.setItem('mode', next); } catch (e) {}
+      // Notify any listeners that rely on Chirpy's mode-change broadcast
+      // (e.g. comments/mermaid theme sync).
+      try { window.postMessage({ id: 'theme-mode' }, '*'); } catch (e) {}
+    });
+  });
+</script>

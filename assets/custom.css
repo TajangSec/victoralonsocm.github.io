@@ -7,15 +7,20 @@
 /* ===== Fonts ===== */
 /* Loaded via <link> in metadata-hook.html for render performance */
 
-/* ===== Color Palette - Chirpy Variable Overrides ===== */
+/* ===== Color Palette - Chirpy Variable Overrides =====
+   The Chirpy → retro variable mappings must apply in BOTH modes so they
+   out-specify Chirpy's gem `html[data-mode='light']` defaults (which are
+   compiled into the theme CSS loaded before custom.css). The --retro-*
+   primitives are re-declared per mode in the light block below. */
 html[data-mode=dark],
+html[data-mode=light],
 :root {
   /* Core retro palette */
-  --retro-bg-deep:       #0a0a0f;
-  --retro-bg:            #0d0d14;
-  --retro-bg-surface:    #12121c;
-  --retro-bg-elevated:   #1a1a28;
-  --retro-border:        #1e1e2e;
+  --retro-bg-deep:       #13131f;
+  --retro-bg:            #171725;
+  --retro-bg-surface:    #1d1d2c;
+  --retro-bg-elevated:   #262638;
+  --retro-border:        #2a2a3c;
   --retro-border-glow:   #00ff4120;
 
   --retro-text:          #b8c0c8;
@@ -32,12 +37,29 @@ html[data-mode=dark],
   --retro-magenta:       #ff2d7b;
   --retro-purple:        #a855f7;
 
+  /* Per-mode tokens */
+  --retro-scroll:        #ff3b2e;
+  --retro-scroll-hover:  #ff5c50;
+  --retro-topbar-bg:     rgba(10, 10, 15, 0.85);
+  --retro-code-bg:       #0a0a12;
+  --retro-inline-code-bg: rgba(0, 255, 65, 0.06);
+  --retro-prompt-tip-bg:   rgba(0, 255, 65, 0.2);
+  --retro-prompt-info-bg:  rgba(0, 212, 255, 0.2);
+  --retro-prompt-warn-bg:  rgba(255, 182, 39, 0.25);
+  --retro-prompt-danger-bg: rgba(255, 45, 123, 0.25);
+  --retro-footnote-bg:     rgba(0, 255, 65, 0.1);
+  --retro-tag-hover:       rgba(168, 85, 247, 0.15);
+  --retro-card-shadow:     0 0 15px rgba(0, 255, 65, 0.03), 0 0 0 1px var(--retro-border);
+  --retro-toast-shadow:    0 4px 24px rgba(0, 0, 0, 0.55), 0 0 12px var(--retro-green-glow);
+  --retro-close-filter:    invert(1);
+
   /* Chirpy variable overrides */
   --main-bg:             var(--retro-bg);
   --mask-bg:             var(--retro-bg-deep);
   --main-border-color:   var(--retro-border);
   --text-color:          var(--retro-text);
   --text-muted-color:    var(--retro-text-dim);
+  --text-muted-highlight-color: var(--retro-text);
   --heading-color:       var(--retro-green);
   --label-color:         var(--retro-text-dim);
   --link-color:          var(--retro-cyan);
@@ -62,7 +84,7 @@ html[data-mode=dark],
   --site-subtitle-color: var(--retro-text-dim);
   --avatar-border-color: var(--retro-green-dim);
 
-  --topbar-bg:           rgba(10, 10, 15, 0.85);
+  --topbar-bg:           var(--retro-topbar-bg);
   --topbar-text-color:   var(--retro-text);
   --search-border-color: var(--retro-border);
   --search-icon-color:   var(--retro-text-dim);
@@ -70,7 +92,7 @@ html[data-mode=dark],
 
   --card-bg:             var(--retro-bg-surface);
   --card-hovor-bg:       var(--retro-bg-elevated);
-  --card-shadow:         0 0 15px rgba(0, 255, 65, 0.03), 0 0 0 1px var(--retro-border);
+  --card-shadow:         var(--retro-card-shadow);
 
   --post-list-text-color: var(--retro-text);
   --toc-highlight:       var(--retro-green);
@@ -78,7 +100,7 @@ html[data-mode=dark],
 
   --tag-border:          var(--retro-border);
   --tag-shadow:          var(--retro-bg-deep);
-  --tag-hover:           rgba(168, 85, 247, 0.15);
+  --tag-hover:           var(--retro-tag-hover);
   --search-tag-bg:       var(--retro-bg-surface);
 
   --categories-border:   var(--retro-border);
@@ -89,10 +111,10 @@ html[data-mode=dark],
   --timeline-node-bg:    var(--retro-green-dim);
   --timeline-year-dot-color: var(--retro-bg-deep);
 
-  --highlight-bg-color:  #0a0a12;
+  --highlight-bg-color:  var(--retro-code-bg);
   --highlighter-rouge-color: var(--retro-cyan);
   --highlight-lineno-color:  var(--retro-text-dim);
-  --inline-code-bg:      rgba(0, 255, 65, 0.06);
+  --inline-code-bg:      var(--retro-inline-code-bg);
   --code-color:          var(--retro-text);
   --code-header-text-color: var(--retro-text-dim);
   --code-header-muted-color: var(--retro-border);
@@ -103,16 +125,16 @@ html[data-mode=dark],
   --kbd-text-color:      var(--retro-green);
   --kbd-bg-color:        var(--retro-bg-surface);
 
-  --prompt-tip-bg:       rgba(0, 255, 65, 0.2);
+  --prompt-tip-bg:       var(--retro-prompt-tip-bg);
   --prompt-tip-icon-color: var(--retro-green);
-  --prompt-info-bg:      rgba(0, 212, 255, 0.2);
+  --prompt-info-bg:      var(--retro-prompt-info-bg);
   --prompt-info-icon-color: var(--retro-cyan);
-  --prompt-warning-bg:   rgba(255, 182, 39, 0.25);
+  --prompt-warning-bg:   var(--retro-prompt-warn-bg);
   --prompt-warning-icon-color: var(--retro-amber);
-  --prompt-danger-bg:    rgba(255, 45, 123, 0.25);
+  --prompt-danger-bg:    var(--retro-prompt-danger-bg);
   --prompt-danger-icon-color: var(--retro-magenta);
 
-  --footnote-target-bg:  rgba(0, 255, 65, 0.1);
+  --footnote-target-bg:  var(--retro-footnote-bg);
   --tb-odd-bg:           var(--retro-bg-surface);
   --tb-border-color:     var(--retro-border);
   --dash-color:          var(--retro-border);
@@ -126,6 +148,48 @@ html[data-mode=dark],
   --filepath-text-color:   var(--retro-amber);
 }
 
+/* ===== Light Mode — "Terminal Printout" =====
+   Paper counterpart to the CRT palette. Cream surfaces, stamped forest-ink
+   green, brick red (oxidized, not neon), warm tan borders. Only the retro-*
+   primitives are redefined; the Chirpy --xxx mappings above cascade. */
+html[data-mode=light] {
+  --retro-bg-deep:       #e8dfc2;
+  --retro-bg:            #f3ecd8;
+  --retro-bg-surface:    #f8f2e1;
+  --retro-bg-elevated:   #fdf8e8;
+  --retro-border:        #c9bf9e;
+  --retro-border-glow:   #1d6b2d20;
+
+  --retro-text:          #2a2620;
+  --retro-text-dim:      #6b6452;
+  --retro-text-bright:   #0d0b06;
+
+  --retro-green:         #1d6b2d;
+  --retro-green-dim:     #14501e;
+  --retro-green-glow:    #1d6b2d30;
+  --retro-amber:         #a67c00;
+  --retro-amber-dim:     #7d5d00;
+  --retro-cyan:          #0b5e6e;
+  --retro-cyan-dim:      #084a57;
+  --retro-magenta:       #a11a5e;
+  --retro-purple:        #5d3c8a;
+
+  --retro-scroll:        #1d6b2d;
+  --retro-scroll-hover:  #14501e;
+  --retro-topbar-bg:     rgba(243, 236, 216, 0.85);
+  --retro-code-bg:       #ebe2c4;
+  --retro-inline-code-bg: rgba(29, 107, 45, 0.10);
+  --retro-prompt-tip-bg:    rgba(29, 107, 45, 0.15);
+  --retro-prompt-info-bg:   rgba(11, 94, 110, 0.15);
+  --retro-prompt-warn-bg:   rgba(166, 124, 0, 0.18);
+  --retro-prompt-danger-bg: rgba(184, 54, 44, 0.15);
+  --retro-footnote-bg:      rgba(29, 107, 45, 0.08);
+  --retro-tag-hover:        rgba(93, 60, 138, 0.12);
+  --retro-card-shadow:      0 1px 2px rgba(42, 38, 32, 0.05), 0 0 0 1px var(--retro-border);
+  --retro-toast-shadow:     0 4px 18px rgba(42, 38, 32, 0.18), 0 0 0 1px var(--retro-border);
+  --retro-close-filter:     none;
+}
+
 /* ===== Typography ===== */
 html, body {
   font-family: 'JetBrains Mono', 'IBM Plex Mono', 'Consolas', monospace !important;
@@ -135,15 +199,16 @@ html, body {
   line-height: 1.7;
   background: var(--retro-bg) !important;
   color: var(--retro-text) !important;
-  color-scheme: dark;
 }
+
+html, html[data-mode=dark] { color-scheme: dark; }
+html[data-mode=light] { color-scheme: light; }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Share Tech Mono', 'JetBrains Mono', monospace !important;
   color: var(--retro-green) !important;
   font-weight: 500 !important;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.03em;
   text-wrap: balance;
 }
 
@@ -220,7 +285,7 @@ body::before {
 #sidebar {
   background: var(--retro-bg-deep) !important;
   border-right: 1px solid var(--retro-border) !important;
-  box-shadow: 1px 0 15px rgba(0, 0, 0, 0.5) !important;
+  box-shadow: none !important;
 }
 
 /* Square avatar */
@@ -283,12 +348,14 @@ body::before {
 /* Terminal frame around nav */
 #sidebar nav {
   border: 1px solid var(--retro-border) !important;
-  border-radius: 4px !important;
+  border-radius: 0 !important;
   margin: 0 !important;
   padding: 0 !important;
   position: relative;
   overflow: hidden;
   width: 100% !important;
+  border-left: 0 !important;
+  border-right: 0 !important;
   flex-grow: 1 !important;
 }
 
@@ -439,7 +506,7 @@ article.px-1 {
 
 /* Pinned cards — compact */
 #post-list article.card-wrapper.pinned-card {
-  margin-bottom: 0.5rem !important;
+  margin-bottom: 0.75rem !important;
 }
 
 #post-list article.card-wrapper.pinned-card .card-body {
@@ -447,13 +514,17 @@ article.px-1 {
 }
 
 #post-list article.card-wrapper.pinned-card .card-title {
-  font-size: 1rem !important;
+  font-size: 1.05rem !important;
   margin-top: 0.25rem !important;
   margin-bottom: 0.15rem !important;
 }
 
+#post-list article.card-wrapper .card-text {
+  font-size: 1rem !important;
+}
+
 #post-list article.card-wrapper.pinned-card .card-text {
-  font-size: 0.8rem !important;
+  font-size: 0.88rem !important;
   margin-bottom: 0.25rem !important;
   display: -webkit-box;
   -webkit-line-clamp: 1;
@@ -583,7 +654,7 @@ article.px-1 {
 
 .card-body h1, .card-body h2, .card-body .card-title {
   color: var(--retro-green) !important;
-  font-size: 1.3rem !important;
+  font-size: 1.35rem !important;
 }
 
 .post-meta {
@@ -1037,9 +1108,25 @@ img:not(.preview-img), .post img:not(.preview-img) {
   font-family: 'JetBrains Mono', monospace !important;
 }
 
+/* ===== Sidebar bottom (mode toggle + social icons) — centered ===== */
+#sidebar .sidebar-bottom {
+  justify-content: center !important;
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+}
+
+/* Swap Chirpy's fa-adjust glyph per mode via FontAwesome's ::before content.
+   No DOM changes needed — the <i class="fa-adjust"> stays as-is. */
+html[data-mode=dark] #mode-toggle .fa-adjust::before {
+  content: "\f186"; /* fa-moon */
+}
+html[data-mode=light] #mode-toggle .fa-adjust::before {
+  content: "\f0eb"; /* fa-lightbulb */
+}
+
 /* ===== Scrollbar ===== */
 * {
-  scrollbar-color: #ff3b2e var(--retro-bg-deep);
+  scrollbar-color: var(--retro-scroll) var(--retro-bg-deep) !important;
   scrollbar-width: thin;
 }
 
@@ -1048,20 +1135,20 @@ img:not(.preview-img), .post img:not(.preview-img) {
   height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--retro-bg-deep);
+  background: var(--retro-bg-deep) !important;
 }
 ::-webkit-scrollbar-thumb {
-  background: #ff3b2e;
+  background: var(--retro-scroll) !important;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #ff5c50;
+  background: var(--retro-scroll-hover) !important;
 }
 
-/* Code block scrollbar — red retro */
+/* Code block scrollbar */
 .highlight,
 div[class^='language-'] .highlight {
-  scrollbar-color: #ff3b2e var(--highlight-bg-color);
+  scrollbar-color: var(--retro-scroll) var(--highlight-bg-color);
 }
 
 .highlight::-webkit-scrollbar-track,
@@ -1071,7 +1158,7 @@ div[class^='language-'] .highlight::-webkit-scrollbar-track {
 
 .highlight::-webkit-scrollbar-thumb,
 div[class^='language-'] .highlight::-webkit-scrollbar-thumb {
-  background: #ff3b2e;
+  background: var(--retro-scroll);
   border-radius: 4px;
 }
 
@@ -1142,6 +1229,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   background: var(--retro-bg-surface) !important;
   padding: 1rem !important;
   scrollbar-width: thin !important;
+  scrollbar-color: var(--retro-border) transparent !important;
 }
 
 #panel-wrapper #toc-wrapper nav#toc,
@@ -1149,7 +1237,29 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   max-height: calc(100vh - 7rem) !important;
   overflow-y: auto !important;
   scrollbar-width: thin !important;
+  scrollbar-color: var(--retro-border) transparent !important;
   scroll-behavior: smooth !important;
+}
+
+#panel-wrapper #toc-wrapper::-webkit-scrollbar-thumb,
+#panel-wrapper .toc-wrap::-webkit-scrollbar-thumb,
+#panel-wrapper #toc-wrapper nav#toc::-webkit-scrollbar-thumb,
+#panel-wrapper .toc-wrap nav#toc::-webkit-scrollbar-thumb {
+  background: var(--retro-border) !important;
+}
+
+#panel-wrapper #toc-wrapper::-webkit-scrollbar-thumb:hover,
+#panel-wrapper .toc-wrap::-webkit-scrollbar-thumb:hover,
+#panel-wrapper #toc-wrapper nav#toc::-webkit-scrollbar-thumb:hover,
+#panel-wrapper .toc-wrap nav#toc::-webkit-scrollbar-thumb:hover {
+  background: var(--retro-green) !important;
+}
+
+#panel-wrapper #toc-wrapper::-webkit-scrollbar-track,
+#panel-wrapper .toc-wrap::-webkit-scrollbar-track,
+#panel-wrapper #toc-wrapper nav#toc::-webkit-scrollbar-track,
+#panel-wrapper .toc-wrap nav#toc::-webkit-scrollbar-track {
+  background: transparent !important;
 }
 
 /* TOC link styling */
@@ -1543,7 +1653,7 @@ dialog#toc-popup ul ul {
 
   /* Pinned cards — mobile */
   #post-list article.card-wrapper.pinned-card .card-title {
-    font-size: 0.9rem !important;
+    font-size: 0.95rem !important;
   }
 
   #post-list article.card-wrapper.pinned-card .post-preview {
@@ -1856,48 +1966,74 @@ dialog#toc-popup ul ul {
   }
 }
 
-/* ===== PWA Update Notification ===== */
+/* ===== PWA Update Notification =====
+   Styled as a terminal system broadcast — squared, green-accented left
+   stripe, monospace [ SYSTEM :: UPDATE_AVAILABLE ] header. Shadow and
+   close-icon filter are mode-scoped below. */
 #notification.toast.show {
   background-color: var(--retro-bg-surface) !important;
   color: var(--retro-text) !important;
   border: 1px solid var(--retro-border) !important;
-  border-radius: 4px !important;
-  backdrop-filter: blur(10px) !important;
-  -webkit-backdrop-filter: blur(10px) !important;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5), 0 0 0 1px var(--retro-border) !important;
+  border-left: 2px solid var(--retro-green) !important;
+  border-radius: 0 !important;
+  box-shadow: var(--retro-toast-shadow) !important;
 }
 
 #notification .toast-header {
   background: var(--retro-bg-elevated) !important;
   border-bottom: 1px solid var(--retro-border) !important;
-  color: var(--retro-text) !important;
+  color: var(--retro-text-dim) !important;
+  padding: 0.4rem 0.75rem !important;
+  font-family: 'Share Tech Mono', 'JetBrains Mono', monospace !important;
+  font-size: 0.72rem !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+}
+
+#notification .toast-header::before {
+  content: "[ SYSTEM :: UPDATE_AVAILABLE ]";
+  color: var(--retro-green) !important;
 }
 
 #notification .toast-header .btn-close {
-  filter: invert(1) !important;
+  filter: var(--retro-close-filter) !important;
+  opacity: 0.7 !important;
+  transition: opacity 0.15s !important;
+}
+
+#notification .toast-header .btn-close:hover {
+  opacity: 1 !important;
 }
 
 #notification .toast-body {
   font-family: 'JetBrains Mono', monospace !important;
   color: var(--retro-text) !important;
+  padding-top: 0.75rem !important;
 }
 
 #notification .toast-body p {
   color: var(--retro-text) !important;
+  font-size: 0.85rem !important;
 }
 
 #notification .toast-body .btn-primary {
   background: transparent !important;
   color: var(--retro-green) !important;
   border: 1px solid var(--retro-green) !important;
-  border-radius: 3px !important;
+  border-radius: 0 !important;
   font-family: 'JetBrains Mono', monospace !important;
-  transition: background 0.2s, box-shadow 0.2s !important;
+  font-size: 0.8rem !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+  padding: 0.35rem 1rem !important;
+  transition: background 0.2s, box-shadow 0.2s, color 0.2s !important;
 }
 
-#notification .toast-body .btn-primary:hover {
-  background: rgba(0, 255, 65, 0.1) !important;
+#notification .toast-body .btn-primary:hover,
+#notification .toast-body .btn-primary:focus-visible {
+  background: var(--retro-green-glow) !important;
   box-shadow: 0 0 10px var(--retro-green-glow) !important;
+  color: var(--retro-text-bright) !important;
 }
 
 /* ===== Reduced Motion ===== */

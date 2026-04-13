@@ -113,5 +113,13 @@ order: 2
     GitHub Projects
   </h3>
 
-  <p style="color: var(--retro-text-dim); font-size: 0.85rem; font-style: italic;">Projects coming soon&hellip;</p>
+  <a href="https://github.com/VictorAlonsoCM/VulnDrivers-n-LOLDrivers-POCs" class="tool-card" target="_blank" rel="noopener noreferrer">
+    <div class="tool-card-title">
+      <i class="fab fa-github fa-fw" style="color: var(--retro-purple);"></i>
+      VulnDrivers-n-LOLDrivers-POCs
+      <span class="tool-card-badge badge-github">GitHub</span>
+      <i class="fas fa-arrow-up-right-from-square fa-fw" style="color: var(--retro-text-dim); font-size: 0.7rem; margin-left: auto;"></i>
+    </div>
+    <p class="tool-card-desc">Proof-of-concept code for exploiting vulnerable and Living-off-the-Land drivers (BYOVD). Research collection covering kernel-level primitives and EDR evasion techniques.</p>
+  </a>
 </div>
