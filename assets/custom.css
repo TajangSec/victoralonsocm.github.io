@@ -12,187 +12,193 @@
    out-specify Chirpy's gem `html[data-mode='light']` defaults (which are
    compiled into the theme CSS loaded before custom.css). The --retro-*
    primitives are re-declared per mode in the light block below. */
-html[data-mode=dark],
-html[data-mode=light],
+html[data-mode='dark'],
+html[data-mode='light'],
 :root {
   /* Core retro palette */
-  --retro-bg-deep:       #13131f;
-  --retro-bg:            #171725;
-  --retro-bg-surface:    #1d1d2c;
-  --retro-bg-elevated:   #262638;
-  --retro-border:        #2a2a3c;
-  --retro-border-glow:   #00ff4120;
+  --retro-bg-deep: #13131f;
+  --retro-bg: #171725;
+  --retro-bg-surface: #1d1d2c;
+  --retro-bg-elevated: #262638;
+  --retro-border: #2a2a3c;
+  --retro-border-glow: #00ff4120;
 
-  --retro-text:          #b8c0c8;
-  --retro-text-dim:      #5a6270;
-  --retro-text-bright:   #e0e4e8;
+  --retro-text: #b8c0c8;
+  --retro-text-dim: #5a6270;
+  --retro-text-bright: #e0e4e8;
 
-  --retro-green:         #00ff41;
-  --retro-green-dim:     #00cc33;
-  --retro-green-glow:    #00ff4140;
-  --retro-amber:         #ffb627;
-  --retro-amber-dim:     #cc9020;
-  --retro-cyan:          #00d4ff;
-  --retro-cyan-dim:      #00bfee;
-  --retro-magenta:       #ff2d7b;
-  --retro-purple:        #a855f7;
+  --retro-green: #00ff41;
+  --retro-green-dim: #00cc33;
+  --retro-green-glow: #00ff4140;
+  --retro-amber: #ffb627;
+  --retro-amber-dim: #cc9020;
+  --retro-cyan: #00d4ff;
+  --retro-cyan-dim: #00bfee;
+  --retro-magenta: #ff2d7b;
+  --retro-purple: #a855f7;
 
   /* Per-mode tokens */
-  --retro-scroll:        #ff3b2e;
-  --retro-scroll-hover:  #ff5c50;
-  --retro-topbar-bg:     rgba(10, 10, 15, 0.85);
-  --retro-code-bg:       #0a0a12;
+  --retro-scroll: #ff3b2e;
+  --retro-scroll-hover: #ff5c50;
+  --retro-topbar-bg: rgba(10, 10, 15, 0.85);
+  --retro-code-bg: #0a0a12;
   --retro-inline-code-bg: rgba(0, 255, 65, 0.06);
-  --retro-prompt-tip-bg:   rgba(0, 255, 65, 0.2);
-  --retro-prompt-info-bg:  rgba(0, 212, 255, 0.2);
-  --retro-prompt-warn-bg:  rgba(255, 182, 39, 0.25);
+  --retro-prompt-tip-bg: rgba(0, 255, 65, 0.2);
+  --retro-prompt-info-bg: rgba(0, 212, 255, 0.2);
+  --retro-prompt-warn-bg: rgba(255, 182, 39, 0.25);
   --retro-prompt-danger-bg: rgba(255, 45, 123, 0.25);
-  --retro-footnote-bg:     rgba(0, 255, 65, 0.1);
-  --retro-tag-hover:       rgba(168, 85, 247, 0.15);
-  --retro-card-shadow:     0 0 15px rgba(0, 255, 65, 0.03), 0 0 0 1px var(--retro-border);
-  --retro-toast-shadow:    0 4px 24px rgba(0, 0, 0, 0.55), 0 0 12px var(--retro-green-glow);
-  --retro-close-filter:    invert(1);
+  --retro-footnote-bg: rgba(0, 255, 65, 0.1);
+  --retro-tag-hover: rgba(168, 85, 247, 0.15);
+  --retro-card-shadow:
+    0 0 15px rgba(0, 255, 65, 0.03), 0 0 0 1px var(--retro-border);
+  --retro-toast-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.55), 0 0 12px var(--retro-green-glow);
+  --retro-close-filter: invert(1);
 
   /* Chirpy variable overrides */
-  --main-bg:             var(--retro-bg);
-  --mask-bg:             var(--retro-bg-deep);
-  --main-border-color:   var(--retro-border);
-  --text-color:          var(--retro-text);
-  --text-muted-color:    var(--retro-text-dim);
+  --main-bg: var(--retro-bg);
+  --mask-bg: var(--retro-bg-deep);
+  --main-border-color: var(--retro-border);
+  --text-color: var(--retro-text);
+  --text-muted-color: var(--retro-text-dim);
   --text-muted-highlight-color: var(--retro-text);
-  --heading-color:       var(--retro-green);
-  --label-color:         var(--retro-text-dim);
-  --link-color:          var(--retro-cyan);
+  --heading-color: var(--retro-green);
+  --label-color: var(--retro-text-dim);
+  --link-color: var(--retro-cyan);
   --link-underline-color: var(--retro-cyan-dim);
 
   --blockquote-border-color: var(--retro-green-dim);
-  --blockquote-text-color:   var(--retro-text-dim);
+  --blockquote-text-color: var(--retro-text-dim);
 
-  --button-bg:           var(--retro-bg-surface);
-  --btn-border-color:    var(--retro-border);
+  --button-bg: var(--retro-bg-surface);
+  --btn-border-color: var(--retro-border);
   --btn-backtotop-color: var(--retro-green);
   --btn-backtotop-border-color: var(--retro-border);
 
-  --sidebar-bg:          var(--retro-bg-deep);
+  --sidebar-bg: var(--retro-bg-deep);
   --sidebar-border-color: var(--retro-border);
   --sidebar-muted-color: var(--retro-text-dim);
   --sidebar-active-color: var(--retro-green);
-  --sidebar-hover-bg:    var(--retro-bg-elevated);
-  --sidebar-btn-bg:      var(--retro-bg-surface);
-  --sidebar-btn-color:   var(--retro-text-dim);
-  --site-title-color:    var(--retro-green);
+  --sidebar-hover-bg: var(--retro-bg-elevated);
+  --sidebar-btn-bg: var(--retro-bg-surface);
+  --sidebar-btn-color: var(--retro-text-dim);
+  --site-title-color: var(--retro-green);
   --site-subtitle-color: var(--retro-text-dim);
   --avatar-border-color: var(--retro-green-dim);
 
-  --topbar-bg:           var(--retro-topbar-bg);
-  --topbar-text-color:   var(--retro-text);
+  --topbar-bg: var(--retro-topbar-bg);
+  --topbar-text-color: var(--retro-text);
   --search-border-color: var(--retro-border);
-  --search-icon-color:   var(--retro-text-dim);
+  --search-icon-color: var(--retro-text-dim);
   --input-focus-border-color: var(--retro-green-dim);
 
-  --card-bg:             var(--retro-bg-surface);
-  --card-hovor-bg:       var(--retro-bg-elevated);
-  --card-shadow:         var(--retro-card-shadow);
+  --card-bg: var(--retro-bg-surface);
+  --card-hovor-bg: var(--retro-bg-elevated);
+  --card-shadow: var(--retro-card-shadow);
 
   --post-list-text-color: var(--retro-text);
-  --toc-highlight:       var(--retro-green);
+  --toc-highlight: var(--retro-green);
   --toc-popup-border-color: var(--retro-border);
 
-  --tag-border:          var(--retro-border);
-  --tag-shadow:          var(--retro-bg-deep);
-  --tag-hover:           var(--retro-tag-hover);
-  --search-tag-bg:       var(--retro-bg-surface);
+  --tag-border: var(--retro-border);
+  --tag-shadow: var(--retro-bg-deep);
+  --tag-hover: var(--retro-tag-hover);
+  --search-tag-bg: var(--retro-bg-surface);
 
-  --categories-border:   var(--retro-border);
+  --categories-border: var(--retro-border);
   --categories-hover-bg: var(--retro-bg-elevated);
   --categories-icon-hover-color: var(--retro-green);
 
-  --timeline-color:      var(--retro-border);
-  --timeline-node-bg:    var(--retro-green-dim);
+  --timeline-color: var(--retro-border);
+  --timeline-node-bg: var(--retro-green-dim);
   --timeline-year-dot-color: var(--retro-bg-deep);
 
-  --highlight-bg-color:  var(--retro-code-bg);
+  --highlight-bg-color: var(--retro-code-bg);
   --highlighter-rouge-color: var(--retro-cyan);
-  --highlight-lineno-color:  var(--retro-text-dim);
-  --inline-code-bg:      var(--retro-inline-code-bg);
-  --code-color:          var(--retro-text);
+  --highlight-lineno-color: var(--retro-text-dim);
+  --inline-code-bg: var(--retro-inline-code-bg);
+  --code-color: var(--retro-text);
   --code-header-text-color: var(--retro-text-dim);
   --code-header-muted-color: var(--retro-border);
   --code-header-icon-color: var(--retro-text-dim);
   --clipboard-checked-color: var(--retro-green);
 
-  --kbd-wrap-color:      var(--retro-border);
-  --kbd-text-color:      var(--retro-green);
-  --kbd-bg-color:        var(--retro-bg-surface);
+  --kbd-wrap-color: var(--retro-border);
+  --kbd-text-color: var(--retro-green);
+  --kbd-bg-color: var(--retro-bg-surface);
 
-  --prompt-tip-bg:       var(--retro-prompt-tip-bg);
+  --prompt-tip-bg: var(--retro-prompt-tip-bg);
   --prompt-tip-icon-color: var(--retro-green);
-  --prompt-info-bg:      var(--retro-prompt-info-bg);
+  --prompt-info-bg: var(--retro-prompt-info-bg);
   --prompt-info-icon-color: var(--retro-cyan);
-  --prompt-warning-bg:   var(--retro-prompt-warn-bg);
+  --prompt-warning-bg: var(--retro-prompt-warn-bg);
   --prompt-warning-icon-color: var(--retro-amber);
-  --prompt-danger-bg:    var(--retro-prompt-danger-bg);
+  --prompt-danger-bg: var(--retro-prompt-danger-bg);
   --prompt-danger-icon-color: var(--retro-magenta);
 
-  --footnote-target-bg:  var(--retro-footnote-bg);
-  --tb-odd-bg:           var(--retro-bg-surface);
-  --tb-border-color:     var(--retro-border);
-  --dash-color:          var(--retro-border);
+  --footnote-target-bg: var(--retro-footnote-bg);
+  --tb-odd-bg: var(--retro-bg-surface);
+  --tb-border-color: var(--retro-border);
+  --dash-color: var(--retro-border);
 
-  --btn-share-color:     var(--retro-text-dim);
+  --btn-share-color: var(--retro-text-dim);
   --btn-share-hover-color: var(--retro-green);
   --btn-paginator-text-color: var(--retro-text);
   --btn-paginator-hover-color: var(--retro-bg-elevated);
 
   --language-border-color: var(--retro-border);
-  --filepath-text-color:   var(--retro-amber);
+  --filepath-text-color: var(--retro-amber);
 }
 
 /* ===== Light Mode — "Terminal Printout" =====
    Paper counterpart to the CRT palette. Cream surfaces, stamped forest-ink
    green, brick red (oxidized, not neon), warm tan borders. Only the retro-*
    primitives are redefined; the Chirpy --xxx mappings above cascade. */
-html[data-mode=light] {
-  --retro-bg-deep:       #e8dfc2;
-  --retro-bg:            #f3ecd8;
-  --retro-bg-surface:    #f8f2e1;
-  --retro-bg-elevated:   #fdf8e8;
-  --retro-border:        #c9bf9e;
-  --retro-border-glow:   #1d6b2d20;
+html[data-mode='light'] {
+  --retro-bg-deep: #e8dfc2;
+  --retro-bg: #f3ecd8;
+  --retro-bg-surface: #f8f2e1;
+  --retro-bg-elevated: #fdf8e8;
+  --retro-border: #c9bf9e;
+  --retro-border-glow: #1d6b2d20;
 
-  --retro-text:          #2a2620;
-  --retro-text-dim:      #6b6452;
-  --retro-text-bright:   #0d0b06;
+  --retro-text: #2a2620;
+  --retro-text-dim: #6b6452;
+  --retro-text-bright: #0d0b06;
 
-  --retro-green:         #1d6b2d;
-  --retro-green-dim:     #14501e;
-  --retro-green-glow:    #1d6b2d30;
-  --retro-amber:         #a67c00;
-  --retro-amber-dim:     #7d5d00;
-  --retro-cyan:          #0b5e6e;
-  --retro-cyan-dim:      #084a57;
-  --retro-magenta:       #a11a5e;
-  --retro-purple:        #5d3c8a;
+  --retro-green: #1d6b2d;
+  --retro-green-dim: #14501e;
+  --retro-green-glow: #1d6b2d30;
+  --retro-amber: #a67c00;
+  --retro-amber-dim: #7d5d00;
+  --retro-cyan: #0b5e6e;
+  --retro-cyan-dim: #084a57;
+  --retro-magenta: #a11a5e;
+  --retro-purple: #5d3c8a;
 
-  --retro-scroll:        #1d6b2d;
-  --retro-scroll-hover:  #14501e;
-  --retro-topbar-bg:     rgba(243, 236, 216, 0.85);
-  --retro-code-bg:       #ebe2c4;
-  --retro-inline-code-bg: rgba(29, 107, 45, 0.10);
-  --retro-prompt-tip-bg:    rgba(29, 107, 45, 0.15);
-  --retro-prompt-info-bg:   rgba(11, 94, 110, 0.15);
-  --retro-prompt-warn-bg:   rgba(166, 124, 0, 0.18);
+  --retro-scroll: #1d6b2d;
+  --retro-scroll-hover: #14501e;
+  --retro-topbar-bg: rgba(243, 236, 216, 0.85);
+  --retro-code-bg: #ebe2c4;
+  --retro-inline-code-bg: rgba(29, 107, 45, 0.1);
+  --retro-prompt-tip-bg: rgba(29, 107, 45, 0.15);
+  --retro-prompt-info-bg: rgba(11, 94, 110, 0.15);
+  --retro-prompt-warn-bg: rgba(166, 124, 0, 0.18);
   --retro-prompt-danger-bg: rgba(184, 54, 44, 0.15);
-  --retro-footnote-bg:      rgba(29, 107, 45, 0.08);
-  --retro-tag-hover:        rgba(93, 60, 138, 0.12);
-  --retro-card-shadow:      0 1px 2px rgba(42, 38, 32, 0.05), 0 0 0 1px var(--retro-border);
-  --retro-toast-shadow:     0 4px 18px rgba(42, 38, 32, 0.18), 0 0 0 1px var(--retro-border);
-  --retro-close-filter:     none;
+  --retro-footnote-bg: rgba(29, 107, 45, 0.08);
+  --retro-tag-hover: rgba(93, 60, 138, 0.12);
+  --retro-card-shadow:
+    0 1px 2px rgba(42, 38, 32, 0.05), 0 0 0 1px var(--retro-border);
+  --retro-toast-shadow:
+    0 4px 18px rgba(42, 38, 32, 0.18), 0 0 0 1px var(--retro-border);
+  --retro-close-filter: none;
 }
 
 /* ===== Typography ===== */
-html, body {
-  font-family: 'JetBrains Mono', 'IBM Plex Mono', 'Consolas', monospace !important;
+html,
+body {
+  font-family:
+    'JetBrains Mono', 'IBM Plex Mono', 'Consolas', monospace !important;
   font-size: 15px !important;
   -webkit-font-smoothing: antialiased;
   letter-spacing: 0.01em;
@@ -201,10 +207,20 @@ html, body {
   color: var(--retro-text) !important;
 }
 
-html, html[data-mode=dark] { color-scheme: dark; }
-html[data-mode=light] { color-scheme: light; }
+html,
+html[data-mode='dark'] {
+  color-scheme: dark;
+}
+html[data-mode='light'] {
+  color-scheme: light;
+}
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: 'Share Tech Mono', 'JetBrains Mono', monospace !important;
   color: var(--retro-green) !important;
   font-weight: 500 !important;
@@ -215,7 +231,9 @@ h1, h2, h3, h4, h5, h6 {
 .site-title {
   font-family: 'Share Tech Mono', monospace !important;
   color: var(--retro-green) !important;
-  text-shadow: 0 0 10px var(--retro-green-glow), 0 0 20px rgba(0, 255, 65, 0.15) !important;
+  text-shadow:
+    0 0 10px var(--retro-green-glow),
+    0 0 20px rgba(0, 255, 65, 0.15) !important;
   letter-spacing: 0.1em !important;
   text-transform: uppercase !important;
 }
@@ -234,8 +252,13 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ===== Blinking Cursor on Site Title ===== */
 @keyframes blink-cursor {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
 }
 
 .site-title::after {
@@ -436,7 +459,9 @@ body::before {
 
 .sidebar-bottom a {
   color: var(--retro-text-dim) !important;
-  transition: color 0.2s, text-shadow 0.2s !important;
+  transition:
+    color 0.2s,
+    text-shadow 0.2s !important;
 }
 .sidebar-bottom a:hover {
   color: var(--retro-green) !important;
@@ -605,7 +630,9 @@ article.px-1 {
   border: 1px solid var(--retro-border) !important;
   border-radius: 4px !important;
   overflow: hidden !important;
-  transition: border-color 0.3s, box-shadow 0.3s !important;
+  transition:
+    border-color 0.3s,
+    box-shadow 0.3s !important;
   position: relative;
 }
 
@@ -652,7 +679,9 @@ article.px-1 {
   border-radius: 0 !important;
 }
 
-.card-body h1, .card-body h2, .card-body .card-title {
+.card-body h1,
+.card-body h2,
+.card-body .card-title {
   color: var(--retro-green) !important;
   font-size: 1.35rem !important;
 }
@@ -683,7 +712,9 @@ article.px-1 {
 a {
   color: var(--retro-cyan) !important;
   text-decoration: none !important;
-  transition: color 0.2s, text-shadow 0.2s !important;
+  transition:
+    color 0.2s,
+    text-shadow 0.2s !important;
 }
 a:hover {
   color: var(--retro-green) !important;
@@ -876,22 +907,62 @@ blockquote code {
 }
 
 /* ===== Syntax Highlighting Colors ===== */
-.highlight .k, .highlight .kd, .highlight .kn,
-.highlight .kp, .highlight .kr, .highlight .kt { color: var(--retro-purple) !important; }
-.highlight .s, .highlight .s1, .highlight .s2,
-.highlight .se, .highlight .sh, .highlight .sx { color: var(--retro-amber) !important; }
-.highlight .c, .highlight .c1, .highlight .cm,
-.highlight .cs, .highlight .cp  { color: var(--retro-text-dim) !important; font-style: italic; }
-.highlight .nf, .highlight .nb  { color: var(--retro-cyan) !important; }
-.highlight .nn, .highlight .nc  { color: var(--retro-green) !important; }
-.highlight .mi, .highlight .mf,
-.highlight .mh, .highlight .mo  { color: var(--retro-amber) !important; }
-.highlight .o, .highlight .ow   { color: var(--retro-text) !important; }
-.highlight .nv, .highlight .vi,
-.highlight .gp                   { color: var(--retro-cyan-dim) !important; }
-.highlight .nt                   { color: var(--retro-magenta) !important; }
-.highlight .na                   { color: var(--retro-amber) !important; }
-.highlight .p                    { color: var(--retro-text) !important; }
+.highlight .k,
+.highlight .kd,
+.highlight .kn,
+.highlight .kp,
+.highlight .kr,
+.highlight .kt {
+  color: var(--retro-purple) !important;
+}
+.highlight .s,
+.highlight .s1,
+.highlight .s2,
+.highlight .se,
+.highlight .sh,
+.highlight .sx {
+  color: var(--retro-amber) !important;
+}
+.highlight .c,
+.highlight .c1,
+.highlight .cm,
+.highlight .cs,
+.highlight .cp {
+  color: var(--retro-text-dim) !important;
+  font-style: italic;
+}
+.highlight .nf,
+.highlight .nb {
+  color: var(--retro-cyan) !important;
+}
+.highlight .nn,
+.highlight .nc {
+  color: var(--retro-green) !important;
+}
+.highlight .mi,
+.highlight .mf,
+.highlight .mh,
+.highlight .mo {
+  color: var(--retro-amber) !important;
+}
+.highlight .o,
+.highlight .ow {
+  color: var(--retro-text) !important;
+}
+.highlight .nv,
+.highlight .vi,
+.highlight .gp {
+  color: var(--retro-cyan-dim) !important;
+}
+.highlight .nt {
+  color: var(--retro-magenta) !important;
+}
+.highlight .na {
+  color: var(--retro-amber) !important;
+}
+.highlight .p {
+  color: var(--retro-text) !important;
+}
 
 /* ===== Breadcrumb ===== */
 #topbar #breadcrumb {
@@ -1041,7 +1112,7 @@ search#search:focus-within {
 }
 
 /* ===== Blockquotes ===== */
-blockquote:not([class^="prompt-"]) {
+blockquote:not([class^='prompt-']) {
   border-left: 3px solid var(--retro-green-dim) !important;
   background: rgba(0, 255, 65, 0.03) !important;
   padding: 0.75em 1em !important;
@@ -1050,14 +1121,18 @@ blockquote:not([class^="prompt-"]) {
 }
 
 /* Prompts — preserve icon space */
-blockquote[class^="prompt-"] {
+blockquote[class^='prompt-'] {
   border-left: none !important;
   padding: 1rem 1rem 1rem 3rem !important;
   font-style: normal !important;
 }
 
 /* ===== Tags & Badges ===== */
-.tag, .label, .badge, .post-tag, .btn-outline-primary.post-tag {
+.tag,
+.label,
+.badge,
+.post-tag,
+.btn-outline-primary.post-tag {
   background: transparent !important;
   color: var(--retro-purple) !important;
   border: 1px solid var(--retro-purple) !important;
@@ -1066,7 +1141,11 @@ blockquote[class^="prompt-"] {
   font-family: 'JetBrains Mono', monospace !important;
   font-size: 0.85rem !important;
   letter-spacing: 0.03em;
-  transition: background 0.2s, border-color 0.2s, box-shadow 0.2s, color 0.2s !important;
+  transition:
+    background 0.2s,
+    border-color 0.2s,
+    box-shadow 0.2s,
+    color 0.2s !important;
 }
 /* All tags: same hover as Trending Tags */
 a.tag:hover,
@@ -1095,22 +1174,30 @@ a.tag:hover,
 }
 
 /* ===== Buttons & Inputs ===== */
-button, .btn:not(.post-tag), input, textarea, select {
+button,
+.btn:not(.post-tag),
+input,
+textarea,
+select {
   background: var(--retro-bg-surface) !important;
   color: var(--retro-text) !important;
   border: 1px solid var(--retro-border) !important;
   border-radius: 3px !important;
   font-family: 'JetBrains Mono', monospace !important;
   box-shadow: none !important;
-  transition: border-color 0.2s, box-shadow 0.2s !important;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s !important;
 }
-button:hover, .btn:not(.post-tag):hover {
+button:hover,
+.btn:not(.post-tag):hover {
   border-color: var(--retro-green-dim) !important;
   box-shadow: 0 0 8px var(--retro-green-glow) !important;
 }
 
 /* ===== Images ===== */
-img:not(.preview-img), .post img:not(.preview-img) {
+img:not(.preview-img),
+.post img:not(.preview-img) {
   background: transparent !important;
   border-radius: 3px;
   max-width: 100%;
@@ -1164,27 +1251,31 @@ img:not(.preview-img), .post img:not(.preview-img) {
 
 /* ===== Footer ===== */
 #tail-wrapper footer,
-body footer[aria-label="Site Info"],
-.site-footer, .copyright {
+body footer[aria-label='Site Info'],
+.site-footer,
+.copyright {
   color: var(--retro-text-dim) !important;
+  background-color: transparent !important;
+  background: transparent !important;
+  border-top: 1px solid var(--retro-border) !important;
   font-size: 0.8rem !important;
   font-family: 'JetBrains Mono', monospace !important;
 }
 
-body footer[aria-label="Site Info"] p,
-body footer[aria-label="Site Info"] span,
-body footer[aria-label="Site Info"] em,
-body footer[aria-label="Site Info"] time {
+body footer[aria-label='Site Info'] p,
+body footer[aria-label='Site Info'] span,
+body footer[aria-label='Site Info'] em,
+body footer[aria-label='Site Info'] time {
   color: var(--retro-text-dim) !important;
 }
 
-body footer[aria-label="Site Info"] a {
+body footer[aria-label='Site Info'] a {
   color: var(--retro-cyan) !important;
   border-bottom: none !important;
 }
 
-body footer[aria-label="Site Info"] a:hover,
-body footer[aria-label="Site Info"] a:focus-visible {
+body footer[aria-label='Site Info'] a:hover,
+body footer[aria-label='Site Info'] a:focus-visible {
   color: var(--retro-cyan-dim) !important;
   border-bottom: 1px solid var(--retro-cyan-dim) !important;
   text-decoration: none !important;
@@ -1199,11 +1290,11 @@ body footer[aria-label="Site Info"] a:focus-visible {
 
 /* Swap Chirpy's fa-adjust glyph per mode via FontAwesome's ::before content.
    No DOM changes needed — the <i class="fa-adjust"> stays as-is. */
-html[data-mode=dark] #mode-toggle .fa-adjust::before {
-  content: "\f186"; /* fa-moon */
+html[data-mode='dark'] #mode-toggle .fa-adjust::before {
+  content: '\f186'; /* fa-moon */
 }
-html[data-mode=light] #mode-toggle .fa-adjust::before {
-  content: "\f0eb"; /* fa-lightbulb */
+html[data-mode='light'] #mode-toggle .fa-adjust::before {
+  content: '\f0eb'; /* fa-lightbulb */
 }
 
 /* ===== Scrollbar ===== */
@@ -1245,7 +1336,10 @@ div[class^='language-'] .highlight::-webkit-scrollbar-thumb {
 }
 
 /* ===== Accessibility - Focus States ===== */
-a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
   outline: 1px solid var(--retro-green-dim) !important;
   outline-offset: 0 !important;
   box-shadow: none !important;
@@ -1438,7 +1532,11 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   font-family: 'JetBrains Mono', monospace !important;
   font-size: 0.85rem !important;
   padding: 0.2rem 0.5rem !important;
-  transition: background 0.2s, border-color 0.2s, box-shadow 0.2s, color 0.2s !important;
+  transition:
+    background 0.2s,
+    border-color 0.2s,
+    box-shadow 0.2s,
+    color 0.2s !important;
 }
 #panel-wrapper .access .post-tag:hover,
 #panel-wrapper .access .btn.btn-outline-primary:hover {
@@ -1714,7 +1812,8 @@ dialog#toc-popup ul ul {
 
 /* Mobile */
 @media (max-width: 768px) {
-  html, body {
+  html,
+  body {
     font-size: 14px !important;
   }
 
@@ -1736,9 +1835,15 @@ dialog#toc-popup ul ul {
     );
   }
 
-  h1 { font-size: 1.4rem !important; }
-  h2 { font-size: 1.2rem !important; }
-  h3 { font-size: 1.05rem !important; }
+  h1 {
+    font-size: 1.4rem !important;
+  }
+  h2 {
+    font-size: 1.2rem !important;
+  }
+  h3 {
+    font-size: 1.05rem !important;
+  }
 
   /* Pinned cards — mobile */
   #post-list article.card-wrapper.pinned-card .card-title {
@@ -1902,7 +2007,9 @@ dialog#toc-popup ul ul {
     padding: 0.75rem 1rem !important;
   }
 
-  .card-body h1, .card-body h2, .card-body .card-title {
+  .card-body h1,
+  .card-body h2,
+  .card-body .card-title {
     font-size: 1rem !important;
   }
 
@@ -1946,14 +2053,15 @@ dialog#toc-popup ul ul {
     -webkit-overflow-scrolling: touch;
   }
 
-  blockquote:not([class^="prompt-"]) {
+  blockquote:not([class^='prompt-']) {
     margin-left: 0 !important;
     margin-right: 0 !important;
     padding: 0.5em 0.75em !important;
   }
 
   /* Hide TOC on mobile */
-  .toc-wrap, #toc-wrapper {
+  .toc-wrap,
+  #toc-wrapper {
     display: none !important;
   }
 
@@ -1974,11 +2082,16 @@ dialog#toc-popup ul ul {
   }
 
   /* Tags wrap */
-  .post-tags, .tag, .post-tag, .badge {
+  .post-tags,
+  .tag,
+  .post-tag,
+  .badge {
     font-size: 0.8rem !important;
   }
 
-  header, footer, .sidebar {
+  header,
+  footer,
+  .sidebar {
     padding-left: 0.75rem !important;
     padding-right: 0.75rem !important;
   }
@@ -2009,11 +2122,13 @@ dialog#toc-popup ul ul {
   }
 
   /* Prevent horizontal overflow without breaking sticky positioning */
-  body, html {
+  body,
+  html {
     overflow-x: clip !important;
   }
 
-  .main-content, .container {
+  .main-content,
+  .container {
     max-width: 100vw !important;
   }
 
@@ -2027,7 +2142,8 @@ dialog#toc-popup ul ul {
 
 /* Small mobile */
 @media (max-width: 480px) {
-  html, body {
+  html,
+  body {
     font-size: 13px !important;
   }
 
@@ -2080,7 +2196,7 @@ dialog#toc-popup ul ul {
 }
 
 #notification .toast-header::before {
-  content: "[ SYSTEM :: UPDATE_AVAILABLE ]";
+  content: '[ SYSTEM :: UPDATE_AVAILABLE ]';
   color: var(--retro-green) !important;
 }
 
@@ -2115,7 +2231,10 @@ dialog#toc-popup ul ul {
   letter-spacing: 0.05em !important;
   text-transform: uppercase !important;
   padding: 0.35rem 1rem !important;
-  transition: background 0.2s, box-shadow 0.2s, color 0.2s !important;
+  transition:
+    background 0.2s,
+    box-shadow 0.2s,
+    color 0.2s !important;
 }
 
 #notification .toast-body .btn-primary:hover,
@@ -2133,7 +2252,8 @@ dialog#toc-popup ul ul {
   #sidebar #avatar img {
     animation: none !important;
   }
-  body::after, body::before {
+  body::after,
+  body::before {
     display: none;
   }
   * {
