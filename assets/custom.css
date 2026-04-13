@@ -1102,25 +1102,19 @@ img:not(.preview-img), .post img:not(.preview-img) {
 }
 
 /* ===== Footer ===== */
-#core-wrapper footer,
+#tail-wrapper footer,
+body footer[aria-label="Site Info"],
 .site-footer, .copyright {
   color: var(--retro-text-dim) !important;
   font-size: 0.8rem !important;
   font-family: 'JetBrains Mono', monospace !important;
 }
 
-#core-wrapper footer p,
-#core-wrapper footer a,
-#core-wrapper footer span,
-#core-wrapper footer em,
-#core-wrapper footer time {
+body footer[aria-label="Site Info"] p,
+body footer[aria-label="Site Info"] span,
+body footer[aria-label="Site Info"] em,
+body footer[aria-label="Site Info"] time {
   color: var(--retro-text-dim) !important;
-}
-
-#core-wrapper footer a:hover,
-#core-wrapper footer a:focus-visible {
-  color: var(--retro-green) !important;
-  text-decoration: underline !important;
 }
 
 /* ===== Sidebar bottom (mode toggle + social icons) — centered ===== */
