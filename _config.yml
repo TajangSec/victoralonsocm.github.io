@@ -18,7 +18,7 @@ timezone: America/Mexico_City
 # E.g. 'https://username.github.io', note that it does not end with a '/'.
 title: EvilMachine # the main title
 
-tagline: A piece of myself and more. # it will display as the subtitle
+tagline: A piece of security, myself and more. # it will display as the subtitle
 
 description: >- # used by seo meta and the atom feed
   A blog about security, my thoughts and experiences.
